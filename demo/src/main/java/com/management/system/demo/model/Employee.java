@@ -28,10 +28,13 @@ public class Employee {
     @Column(name = "age")
     private int age;
 
+    @Column(name = "salary")
     private BigDecimal salary;
 
+    @Column(name = "created_on")
     private LocalDateTime createdOn;
 
+    @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
 //    @Column(name = "status")
@@ -84,6 +87,30 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
     }
 
     public Status getStatus() {

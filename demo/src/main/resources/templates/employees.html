@@ -11,7 +11,8 @@
 </head>
 <body>
 
-<div class="container my-2">
+<div class="container-fluid">
+<!--    <div class="container my-2">-->
     <h1> Employees List </h1>
 
     <a th:href="@{/employee/showNewEmployeeForm}" class="btn btn-info btn-sm mb-3">Add Employee</a>
@@ -20,9 +21,12 @@
         <thead>
         <tr>
             <th>Status</th>
-            <th>Employee First Name</th>
-            <th>Employee Last Name</th>
-            <th>Employee Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Created on</th>
+            <th>Updated on</th>
             <th>Actions</th>
             <th>Flag</th>
         </tr>
@@ -38,6 +42,9 @@
             <td th:text="${employee.firstName}"></td>
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.email}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td th:text="${employee.createdOn}"></td>
+            <td th:text="${employee.updatedOn}"></td>
             <td>
                 <a th:href="@{/employee/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-warning">Update</a>
                 <a th:href="@{/employee/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete Employee</a>
