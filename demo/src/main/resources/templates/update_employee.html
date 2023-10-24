@@ -16,7 +16,6 @@
 
     <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST">
 
-        <!-- Add hidden form field to handle update -->
         <input type="hidden" th:field="*{id}"/>
 
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
@@ -25,31 +24,18 @@
 
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
-<!--        <input type="text" th:field="*{status}" class="form-control mb-4 col-4">-->
 
         <h6>CHANGE STATUS:</h6>
 
         <select name="status">
-            <option  th:value="${'ACTIVE'}" th:text="${'ACTIVE'}"></option>
-            <option  th:value="${'INACTIVE'}" th:text="${'INACTIVE'}"></option>
+            <option th:value="${'ACTIVE'}" th:text="${'ACTIVE'}"></option>
+            <option th:value="${'INACTIVE'}" th:text="${'INACTIVE'}"></option>
         </select>
-
-<!--        <div th:each="status : ${T(com.management.system.demo.enums.Status).values()}">-->
-<!--            <input name="status" type="radio" th:value="${status}"/>-->
-<!--            <label th:text="| &nbsp; ${status} |">Something is wrong !</label>-->
-<!--        </div>-->
-
-<!--        <select name="status">-->
-<!--            <option th:each="status : ${T(com.management.system.demo.enums.Status).values()}"-->
-<!--                    th:value="${status}" th:text="${status}"></option>-->
-<!--        </select>-->
-
         <hr>
         <button type="submit" class="btn btn-info col-2">Update Employee</button>
     </form>
 
     <hr>
-
     <a th:href="@{/employee}"> Back to Employee List</a>
 
 </div>

@@ -2,17 +2,22 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <h1>Welcome home</h1>
-    <p>This is my first side</p>
-    <!--    <p th:text="${employee.firstName}"></p>-->
-    <p>Count:<td th:text="${count}"></td></p>
-    <!--    <td ></td>-->
+    <title>Company page</title>
 
-    <!--    <h1 style="border:2px solid DodgerBlue;">Welcome home</h1>-->
-    <!--    <p style="background-color:LightGray;">This is my first side</p>-->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
 </head>
 <body>
+<div class="container my-2">
+    <h1> Welcome to the IT Company  </h1>
 
+    <a th:href="@{/employee}" class="btn btn-info btn-sm mb-3">Employees</a>
+    <a th:href="@{/employer}" class="btn btn-info btn-sm mb-3">Employers</a>
+    <a th:href="@{/department}" class="btn btn-info btn-sm mb-3">Departments</a>
+
+</div>
 </body>
 </html>

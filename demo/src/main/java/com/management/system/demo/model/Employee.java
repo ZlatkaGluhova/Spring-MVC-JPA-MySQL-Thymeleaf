@@ -4,11 +4,14 @@ package com.management.system.demo.model;
 import com.management.system.demo.enums.Status;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
-
+//createdOn, updatedOn - data i chas
+    //голямо Лонг
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,6 +27,12 @@ public class Employee {
 
     @Column(name = "age")
     private int age;
+
+    private BigDecimal salary;
+
+    private LocalDateTime createdOn;
+
+    private LocalDateTime updatedOn;
 
 //    @Column(name = "status")
     @Enumerated(EnumType.STRING)
