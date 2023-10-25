@@ -52,7 +52,6 @@ public class EmployeeController {
         //get the model from the service
         Employee employee = employeeService.getEmployeeById(id);
         //set employee as a model attribute to pre-populate the form
-//        employee.setUpdatedOn(LocalDateTime.now());
         model.addAttribute(ConstantType.EMPLOYEE.getType(), employee);
         return ConstantType.EMPLOYEE.getUpdateType();
     }
@@ -70,7 +69,6 @@ public class EmployeeController {
     public String changeEmployeeStatus(@PathVariable(value = Constant.ID) long id,
                                        @PathVariable(value = Constant.STATUS) Status status,
                                        Model model) {
-//        System.out.println("changeEmployeeStatus");
         this.employeeService.changeEmployeeStatus(id, status);
 
         return ConstantType.EMPLOYEE.getRedirectType();

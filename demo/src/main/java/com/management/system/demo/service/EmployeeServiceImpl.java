@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -23,15 +24,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void saveEmployee(Employee employee) {
-        if (employee.getCreatedOn() == null) {
-            employee.setCreatedOn(LocalDateTime.now());
+        if (employee.getId() != null){
+            employee = mappedDataFromEmployeeToEmployeeDB(employee);
         } else {
-            employee.setUpdatedOn(LocalDateTime.now());
+            employee.setCreatedOn(LocalDateTime.now());
         }
+
         this.employeeRepository.save(employee);
     }
 
+    private Employee mappedDataFromEmployeeToEmployeeDB(Employee employee) {
+        Employee employeeFromDB = employeeRepository.findById(employee.getId()).orElseThrow(() -> new RuntimeException("Employee not found for id : " + employee.getId()));
+
+        employeeFromDB.setFirstName(employee.getFirstName());
+        employeeFromDB.setLastName(employee.getLastName());
+        employeeFromDB.setEmail(employee.getEmail());
+        employeeFromDB.setAge(employee.getAge());
+        employeeFromDB.setSalary(employee.getSalary());
+        employeeFromDB.setUpdatedOn(LocalDateTime.now());
+        employeeFromDB.setStatus(employee.getStatus());
+
+        return employeeFromDB;
+    }
+
     @Override
+    // TODO - change long to Long
     public Employee getEmployeeById(long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found for id : " + id));
 

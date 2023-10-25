@@ -15,15 +15,15 @@
     <h2>Save Employee</h2>
 
     <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST">
-
+        <h6>First name:</h6>
         <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control mb-4 col-4">
-
+        <h6>Last name:</h6>
         <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control mb-4 col-4">
-
+        <h6>Email:</h6>
         <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
-
+        <h6>Age:</h6>
         <input type="text" th:field="*{age}" placeholder="Age" class="form-control mb-4 col-4">
-
+        <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" placeholder="Salary" class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2">Save Employee</button>

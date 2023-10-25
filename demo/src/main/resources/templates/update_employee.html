@@ -17,22 +17,18 @@
     <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST">
 
         <input type="hidden" th:field="*{id}"/>
-
+        <h6>First name:</h6>
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
-
+        <h6>Last name:</h6>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
-
+        <h6>Email:</h6>
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
-
+        <h6>Age:</h6>
         <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
-
+        <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{createdOn}" class="form-control mb-4 col-4">
-
-        <input type="text" th:field="*{updatedOn}" class="form-control mb-4 col-4">
-
-        <h6>CHANGE STATUS:</h6>
+        <h6>Change status:</h6>
 
         <select name="status">
             <option th:value="${'ACTIVE'}" th:text="${'ACTIVE'}"></option>
