@@ -1,6 +1,5 @@
 package com.management.system.demo.service;
 
-import com.management.system.demo.dto.EmployeeDTO;
 import com.management.system.demo.enums.Status;
 import com.management.system.demo.model.Employee;
 
@@ -11,11 +10,11 @@ public interface EmployeeService {
 
     void saveEmployee(Employee employee);
 
-    Employee getEmployeeById(long id);
+    Employee getEmployeeById(Long id);
 
-    void deleteEmployeeById(long id);
+    void deleteEmployeeById(Long id);
 
-    void changeEmployeeStatus(long id, Status status);
+    void changeEmployeeStatus(Long id, Status status);
 
     Employee getEmail(String email);
 

@@ -1,6 +1,5 @@
 package com.management.system.demo.service;
 
-import com.management.system.demo.dto.EmployeeDTO;
 import com.management.system.demo.enums.Status;
 import com.management.system.demo.model.Employee;
 import com.management.system.demo.repository.EmployeeRepository;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -48,20 +47,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    // TODO - change long to Long
-    public Employee getEmployeeById(long id) {
+    public Employee getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found for id : " + id));
 
         return employee;
     }
 
     @Override
-    public void deleteEmployeeById(long id) {
+    public void deleteEmployeeById(Long id) {
         this.employeeRepository.deleteById(id);
     }
 
     @Override
-    public void changeEmployeeStatus(long id, Status status) {
+    public void changeEmployeeStatus(Long id, Status status) {
         Employee employee = getEmployeeById(id);
         employee.setStatus(status);
         employee.setUpdatedOn(LocalDateTime.now());

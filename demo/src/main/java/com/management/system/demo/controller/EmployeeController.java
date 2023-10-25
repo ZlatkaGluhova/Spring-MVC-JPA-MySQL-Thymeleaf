@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -21,7 +20,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    //display list of employees
+    /**
+     * display list of employees
+     * @param model
+     * @return String
+     */
     @GetMapping
     public String showEmployees(Model model) {
         List<Employee> employees = employeeService.findAllExistingEmployees();
@@ -48,7 +51,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable(value = Constant.ID) long id, Model model) {
+    public String showFormForUpdate(@PathVariable(value = Constant.ID) Long id, Model model) {
         //get the model from the service
         Employee employee = employeeService.getEmployeeById(id);
         //set employee as a model attribute to pre-populate the form
@@ -58,7 +61,7 @@ public class EmployeeController {
 
 
     @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@PathVariable(value = Constant.ID) long id, Model model) {
+    public String deleteEmployee(@PathVariable(value = Constant.ID) Long id, Model model) {
         //call delete employee method
         this.employeeService.deleteEmployeeById(id);
 
@@ -66,7 +69,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/changeEmployeeStatus/{status}/{id}")
-    public String changeEmployeeStatus(@PathVariable(value = Constant.ID) long id,
+    public String changeEmployeeStatus(@PathVariable(value = Constant.ID) Long id,
                                        @PathVariable(value = Constant.STATUS) Status status,
                                        Model model) {
         this.employeeService.changeEmployeeStatus(id, status);

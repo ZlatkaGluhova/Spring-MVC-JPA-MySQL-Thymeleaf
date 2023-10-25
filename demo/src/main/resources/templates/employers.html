@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Employer Management System</title>
@@ -11,5 +11,56 @@
 </head>
 <body>
 
+<div class="container-fluid">
+    <!--    <div class="container my-2">-->
+    <h1 id="top"> Employers List </h1>
+
+    <a th:href="@{/employer/showNewEmployerForm}" class="btn btn-info btn-sm mb-3">Add Employer</a>
+    <a th:href="@{/}" class="btn btn-info btn-sm mb-3"> Back to Home page</a>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Country</th>
+            <th>Salary</th>
+            <th>Department</th>
+            <th>Created on</th>
+            <th>Updated on</th>
+            <th>Actions</th>
+<!--            <th>Flag</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employer : ${listEmployers}">
+
+<!--            <td th:switch="${employee.status.toString()}">-->
+<!--                <span th:case="${'ACTIVE'}" class="btn btn-success btn-md disabled" th:text="${employee.status}"></span>-->
+<!--                <span th:case="${'INACTIVE'}" class="btn btn-secondary btn-md disabled"-->
+<!--                      th:text="${employee.status}"></span>-->
+<!--            </td>-->
+            <td th:text="${employer.firstName}"></td>
+            <td th:text="${employer.lastName}"></td>
+            <td th:text="${employer.country}"></td>
+            <td th:text="${employer.salary}"></td>
+<!--            <td th:text="${employer.department}"></td>-->
+            <td th:text="department"></td>
+            <td th:text="${employer.createdOn}"></td>
+            <td th:text="${employer.updatedOn}"></td>
+            <td>
+                <a th:href="@{/employer/showFormForUpdate/{id}(id=${employer.id})}" class="btn btn-warning">Update</a>
+                <a th:href="@{/employer/deleteEmployer/{id}(id=${employer.id})}" class="btn btn-danger">Delete Employer</a>
+            </td>
+<!--            <td>-->
+<!--                <a th:href="@{/employer/changeEmployeeStatus/DELETED/{id}(id=${employer.id})}" class="btn btn-primary">Delete</a>-->
+<!--                <a th:href="@{/employer/changeEmployeeStatus/INACTIVE/{id}(id=${employer.id})}" class="btn btn-info">Restore</a>-->
+<!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="#top" class="btn btn-info btn-sm mb-3"> Go to top </a>
+
+</div>
 </body>
 </html>
