@@ -128,8 +128,11 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", age='" + age + '\'' +
-                ", status='" + status + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", status=" + status +
                 '}';
     }
 }

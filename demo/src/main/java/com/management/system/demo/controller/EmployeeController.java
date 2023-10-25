@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -51,8 +52,8 @@ public class EmployeeController {
         //get the model from the service
         Employee employee = employeeService.getEmployeeById(id);
         //set employee as a model attribute to pre-populate the form
+//        employee.setUpdatedOn(LocalDateTime.now());
         model.addAttribute(ConstantType.EMPLOYEE.getType(), employee);
-
         return ConstantType.EMPLOYEE.getUpdateType();
     }
 

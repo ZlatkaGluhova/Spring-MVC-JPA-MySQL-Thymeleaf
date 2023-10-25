@@ -7,6 +7,7 @@ import com.management.system.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,6 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void saveEmployee(Employee employee) {
+        if (employee.getCreatedOn() == null) {
+            employee.setCreatedOn(LocalDateTime.now());
+        } else {
+            employee.setUpdatedOn(LocalDateTime.now());
+        }
         this.employeeRepository.save(employee);
     }
 
@@ -41,6 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void changeEmployeeStatus(long id, Status status) {
         Employee employee = getEmployeeById(id);
         employee.setStatus(status);
+        employee.setUpdatedOn(LocalDateTime.now());
         saveEmployee(employee);
     }
 
