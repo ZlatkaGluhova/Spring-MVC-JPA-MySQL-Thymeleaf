@@ -1,6 +1,7 @@
 package com.management.system.demo.controller;
 
 
+import com.management.system.demo.constants.Constant;
 import com.management.system.demo.enums.ConstantType;
 import com.management.system.demo.model.Employee;
 import com.management.system.demo.model.Employer;
@@ -8,10 +9,7 @@ import com.management.system.demo.service.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,6 +43,15 @@ public class EmployerController {
         employerService.saveEmployer(employer);
 
         return ConstantType.EMPLOYER.getRedirectType();
+    }
+
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable(value = Constant.ID) Long id, Model model) {
+        //get the model from the service
+        Employer employer = employerService.getEmployerById(id);
+        //set employee as a model attribute to pre-populate the form
+        model.addAttribute(ConstantType.EMPLOYER.getType(), employer);
+        return ConstantType.EMPLOYER.getUpdateType();
     }
 
 }

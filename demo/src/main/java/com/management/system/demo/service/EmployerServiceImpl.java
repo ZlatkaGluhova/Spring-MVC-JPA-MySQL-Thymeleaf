@@ -42,4 +42,11 @@ public class EmployerServiceImpl implements EmployerService {
 
         return employerFromDB;
     }
+
+    @Override
+    public Employer getEmployerById(Long id) {
+        Employer employer = employerRepository.findById(id).orElseThrow(() -> new RuntimeException("Employer not found for id : " + id));
+
+        return employer;
+    }
 }
