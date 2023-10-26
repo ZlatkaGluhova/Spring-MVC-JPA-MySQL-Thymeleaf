@@ -33,12 +33,6 @@
         </thead>
         <tbody>
         <tr th:each="employer : ${listEmployers}">
-
-<!--            <td th:switch="${employee.status.toString()}">-->
-<!--                <span th:case="${'ACTIVE'}" class="btn btn-success btn-md disabled" th:text="${employee.status}"></span>-->
-<!--                <span th:case="${'INACTIVE'}" class="btn btn-secondary btn-md disabled"-->
-<!--                      th:text="${employee.status}"></span>-->
-<!--            </td>-->
             <td th:text="${employer.firstName}"></td>
             <td th:text="${employer.lastName}"></td>
             <td th:text="${employer.country}"></td>
@@ -51,10 +45,6 @@
                 <a th:href="@{/employer/showFormForUpdate/{id}(id=${employer.id})}" class="btn btn-warning">Update</a>
                 <a th:href="@{/employer/deleteEmployer/{id}(id=${employer.id})}" class="btn btn-danger">Delete Employer</a>
             </td>
-<!--            <td>-->
-<!--                <a th:href="@{/employer/changeEmployeeStatus/DELETED/{id}(id=${employer.id})}" class="btn btn-primary">Delete</a>-->
-<!--                <a th:href="@{/employer/changeEmployeeStatus/INACTIVE/{id}(id=${employer.id})}" class="btn btn-info">Restore</a>-->
-<!--            </td>-->
         </tr>
         </tbody>
     </table>

@@ -22,4 +22,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void saveDepartment(Department department) {
         departmentRepository.save(department);
     }
+
+    @Override
+    public Department getDepartmentById(Long id) {
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found for id : " + id));
+
+        return department;
+    }
 }

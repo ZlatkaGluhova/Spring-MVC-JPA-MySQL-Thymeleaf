@@ -3,7 +3,6 @@ package com.management.system.demo.controller;
 
 import com.management.system.demo.constants.Constant;
 import com.management.system.demo.enums.ConstantType;
-import com.management.system.demo.model.Employee;
 import com.management.system.demo.model.Employer;
 import com.management.system.demo.service.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
