@@ -20,7 +20,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @GetMapping
-    public String showEmployers(Model model) {
+    public String showDepartments(Model model) {
         List<Department> departments = departmentService.getAllDepartments();
         model.addAttribute("listDepartments", departments);
 
@@ -37,7 +37,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/saveDepartment")
-    public String saveEmployer(@ModelAttribute("department") Department department) {
+    public String saveDepartment(@ModelAttribute("department") Department department) {
         //save employee to db
         departmentService.saveDepartment(department);
 

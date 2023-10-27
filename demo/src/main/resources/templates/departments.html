@@ -23,6 +23,7 @@
             <th>Employer</th>
             <th>Number of employees</th>
             <th>Optional home office</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -30,7 +31,7 @@
             <td th:text="${department.name}"></td>
             <td th:text="Employer"></td>
             <td th:text="${department.numberOfEmployees}"></td>
-            <td th:text="${department.optionalHomeOffice}"></td>
+            <td th:text="${department.optionalHomeOffice} ? 'YES' : 'NO'"></td>
             <td>
                 <a th:href="@{/department/showFormForUpdate/{id}(id=${department.id})}" class="btn btn-warning">Update</a>
                 <a th:href="@{/department/deleteDepartment/{id}(id=${department.id})}" class="btn btn-danger">Delete Department</a>

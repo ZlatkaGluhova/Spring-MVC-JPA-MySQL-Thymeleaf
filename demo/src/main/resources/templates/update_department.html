@@ -27,15 +27,17 @@
         <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
         <h6>Number of employees:</h6>
         <input type="text" th:field="*{numberOfEmployees}" class="form-control mb-4 col-4">
-        <h6>Optional home office:</h6>
-        <input type="text" th:field="*{optionalHomeOffice}" class="form-control mb-4 col-4">
+        <!--        <h6>Optional home office:</h6>-->
+
+        <h6> Optional home office: <input type="checkbox" name="optionalHomeOffice" th:checked="*{optionalHomeOffice}"></h6>
 
         <hr>
         <button type="submit" class="btn btn-info col-2">Update Department</button>
     </form>
 
     <hr>
-    <a th:href="@{/department}"> Back to Department List</a>
+    <a th:href="@{/department}" class="btn btn-info btn-md mb-3"> Back to Department List</a>
+    <!--    <a th:href="@{/department}" class="btn btn-info col-2"> Back to Department List</a>-->
 
 </div>
 </body>
