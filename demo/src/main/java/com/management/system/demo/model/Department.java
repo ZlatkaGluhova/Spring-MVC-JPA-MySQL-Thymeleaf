@@ -15,7 +15,8 @@ public class Department {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private DepartmentName name;
+    @Column(name = "name")
+    private DepartmentName departmentName;
 
     @Column(name = "numbers_of_employees")
     private int numberOfEmployees;
@@ -34,12 +35,12 @@ public class Department {
         this.id = id;
     }
 
-    public DepartmentName getName() {
-        return name;
+    public DepartmentName getDepartmentName() {
+        return departmentName;
     }
 
-    public void setName(DepartmentName name) {
-        this.name = name;
+    public void setDepartmentName(DepartmentName departmentName) {
+        this.departmentName = departmentName;
     }
 
     public int getNumberOfEmployees() {
@@ -62,7 +63,7 @@ public class Department {
     public String toString() {
         return "Department{" +
                 "id=" + id +
-                ", name=" + name +
+                ", name=" + departmentName +
                 ", numberOfEmployees=" + numberOfEmployees +
                 ", optionalHomeOffice=" + optionalHomeOffice +
                 '}';

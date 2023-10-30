@@ -31,6 +31,7 @@
         <h6>Change status:</h6>
 
         <select name="status">
+            <option th:value="${employee.status}" th:text="${employee.status}"></option>
             <option th:value="${'ACTIVE'}" th:text="${'ACTIVE'}"></option>
             <option th:value="${'INACTIVE'}" th:text="${'INACTIVE'}"></option>
         </select>

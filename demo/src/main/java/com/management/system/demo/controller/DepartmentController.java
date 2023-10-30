@@ -3,6 +3,7 @@ package com.management.system.demo.controller;
 
 import com.management.system.demo.constants.Constant;
 import com.management.system.demo.enums.ConstantType;
+import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.model.Department;
 import com.management.system.demo.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class DepartmentController {
         // create model attribute to bind form data
         Department department = new Department();
         model.addAttribute(ConstantType.DEPARTMENT.getType(), department); // k - v
-
+        System.out.println(department.getDepartmentName());
+        System.out.println(department.getDepartmentName().getName());
         return ConstantType.DEPARTMENT.getNewType();
     }
 
@@ -40,7 +42,6 @@ public class DepartmentController {
     public String saveDepartment(@ModelAttribute("department") Department department) {
         //save employee to db
         departmentService.saveDepartment(department);
-
         return ConstantType.DEPARTMENT.getRedirectType();
     }
 

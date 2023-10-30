@@ -19,6 +19,7 @@
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Employer</th>
             <th>Number of employees</th>
@@ -28,7 +29,8 @@
         </thead>
         <tbody>
         <tr th:each="department : ${listDepartments}">
-            <td th:text="${department.name}"></td>
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.departmentName.name}"></td>
             <td th:text="Employer"></td>
             <td th:text="${department.numberOfEmployees}"></td>
             <td th:text="${department.optionalHomeOffice} ? 'YES' : 'NO'"></td>

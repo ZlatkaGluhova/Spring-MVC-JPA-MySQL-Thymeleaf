@@ -5,7 +5,6 @@ public enum DepartmentName {
     FINANCE("Financial Service"),
     HR("Human Resources");
 
-
     private String name;
 
     DepartmentName(String name) {
@@ -18,5 +17,9 @@ public enum DepartmentName {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DepartmentName[] getDepartmentValues() {
+        return DepartmentName.values();
     }
 }

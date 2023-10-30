@@ -20,6 +20,7 @@
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
+            <th>Id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Country</th>
@@ -33,6 +34,7 @@
         </thead>
         <tbody>
         <tr th:each="employer : ${listEmployers}">
+            <td th:text="${employer.id}"></td>
             <td th:text="${employer.firstName}"></td>
             <td th:text="${employer.lastName}"></td>
             <td th:text="${employer.country}"></td>
