@@ -32,8 +32,6 @@ public class DepartmentController {
         // create model attribute to bind form data
         Department department = new Department();
         model.addAttribute(ConstantType.DEPARTMENT.getType(), department); // k - v
-        System.out.println(department.getDepartmentName());
-        System.out.println(department.getDepartmentName().getName());
         return ConstantType.DEPARTMENT.getNewType();
     }
 
