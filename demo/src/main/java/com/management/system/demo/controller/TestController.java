@@ -21,9 +21,7 @@ public class TestController {
     @GetMapping("/home")
     public List<Employee> home(Model model) {
         List<Employee> employees = employeeService.getAllEmployees();
-//        System.out.println(i);
         model.addAttribute("count", i++);
-//        ++i;
         return employees;
     }
 

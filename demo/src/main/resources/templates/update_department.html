@@ -26,35 +26,20 @@
         <h6>Name:</h6>
 
         <select name="departmentName">
-            <option th:each="name : ${department.getDepartmentName().getDepartmentValues()}" th:selected="${name == department.getDepartmentName()}" th:value="${name}" th:text="${name.getName()}"></option>
+            <option th:each="name : ${department.getDepartmentName().getDepartmentValues()}"
+                    th:selected="${name == department.getDepartmentName()}" th:value="${name}"
+                    th:text="${name.getName()}"></option>
         </select>
-<!--        <select name="departmentName">-->
-<!--&lt;!&ndash;            <option th:value="${department.departmentName.name}" th:text="${department.departmentName.name}"></option>&ndash;&gt;-->
-
-<!--&lt;!&ndash;            <option th:value="${'IT'}" type="${department.name.name} == ${'Information Technology'} ? hidden" th:text="${'Information Technology'}"></option>&ndash;&gt;-->
-<!--&lt;!&ndash;            <option th:value="${'IT'}" th:text="${department.name.name} == ${'Information Technology'} ? [hidden] : ${'Information Technology'}"></option>&ndash;&gt;-->
-<!--&lt;!&ndash;            <option th:value="${'IT'}" type="${department.name.name} == ${'Information Technology'} ? hidden" th:text="${'Information Technology'}"></option>&ndash;&gt;-->
-<!--            <option th:value="${'IT'}" th:text="${'Information Technology'}"></option>-->
-<!--            <option th:value="${'HR'}" th:text="${'Human Resources'}"></option>-->
-<!--            <option th:value="${'FINANCE'}" th:text="${'Financial Service'}"></option>-->
-<!--        </select>-->
         <hr>
-
-<!--        <input type="text" th:field="*{name}" class="form-control mb-4 col-4">-->
         <h6>Number of employees:</h6>
         <input type="text" th:field="*{numberOfEmployees}" class="form-control mb-4 col-4">
-        <!--        <h6>Optional home office:</h6>-->
-
-        <h6> Optional home office: <input type="checkbox" name="optionalHomeOffice" th:checked="*{optionalHomeOffice}"></h6>
-
+        <h6> Optional home office: <input type="checkbox" name="optionalHomeOffice" th:checked="*{optionalHomeOffice}">
+        </h6>
         <hr>
         <button type="submit" class="btn btn-info col-2">Update Department</button>
     </form>
-
     <hr>
     <a th:href="@{/department}" class="btn btn-info btn-md mb-3"> Back to Department List</a>
-    <!--    <a th:href="@{/department}" class="btn btn-info col-2"> Back to Department List</a>-->
-
 </div>
 </body>
 </html>

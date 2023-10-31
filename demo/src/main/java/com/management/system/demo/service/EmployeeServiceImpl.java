@@ -72,8 +72,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmails(String email) {
-//        return employeeRepository.findByEmailContaining("abv");
-
         List<Employee> findByEmailContaining = employeeRepository.findByEmailContaining(email);
         System.out.println("findByEmailContaining = " + findByEmailContaining);
         return findByEmailContaining;

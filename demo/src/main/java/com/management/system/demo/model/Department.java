@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "department")
 public class Department {
-    // name - enum, employees number, shte ima i shefove, optionalHomeOffice(bool)
+    // employers
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "employers")
 public class Employer {
-    // first, last, country, salary, department, createdOn, updatedOn - data i chas
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,8 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "employees")
 public class Employee {
-//createdOn, updatedOn - data i chas
-    //голямо Лонг
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
