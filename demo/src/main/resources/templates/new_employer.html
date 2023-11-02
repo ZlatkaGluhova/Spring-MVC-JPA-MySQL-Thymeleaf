@@ -20,7 +20,14 @@
         <h6>Last name:</h6>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
         <h6>Country:</h6>
-        <input type="text" th:field="*{country}" class="form-control mb-4 col-4">
+        <select name="country">
+            <option th:value="${'BULGARIA'}" th:text="${'Bulgaria'}"></option>
+            <option th:value="${'FRANCE'}" th:text="${'France'}"></option>
+            <option th:value="${'ITALY'}" th:text="${'Italy'}"></option>
+        </select>
+
+        <hr>
+
         <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
         <!--        <h6>Department:</h6>-->

@@ -16,7 +16,13 @@
 
     <form action="#" th:action="@{/department/saveDepartment}" th:object="${department}" method="POST">
         <h6>Name:</h6>
-        <input type="text" th:field="*{departmentName}" class="form-control mb-4 col-4">
+        <select name="departmentName">
+            <option th:value="${'IT'}" th:text="${'Information Technology'}"></option>
+            <option th:value="${'FINANCE'}" th:text="${'Financial Service'}"></option>
+            <option th:value="${'HR'}" th:text="${'Human Resources'}"></option>
+        </select>
+
+        <hr>
         <!--        <h6>Employer:</h6>-->
         <!--        <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control mb-4 col-4">-->
         <h6>Number of employees:</h6>
@@ -24,7 +30,7 @@
 
         <h6> Optional home office: <input type="checkbox" name="optionalHomeOffice" th:checked="*{optionalHomeOffice}">
         </h6>
-
+        <hr>
         <button type="submit" class="btn btn-info col-2">Save Department</button>
     </form>
 
