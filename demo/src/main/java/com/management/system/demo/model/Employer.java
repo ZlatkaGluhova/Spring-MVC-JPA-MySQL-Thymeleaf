@@ -1,5 +1,7 @@
 package com.management.system.demo.model;
 
+import com.management.system.demo.enums.Country;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,8 +21,9 @@ public class Employer {
     @Column(name = "last_name")
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "country")
-    private String country;
+    private Country country;
 
     @Column(name = "salary")
     private BigDecimal salary;
@@ -59,11 +62,11 @@ public class Employer {
         this.lastName = lastName;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
@@ -97,7 +100,7 @@ public class Employer {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", country='" + country + '\'' +
+                ", country=" + country +
                 ", salary=" + salary +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +

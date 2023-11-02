@@ -25,7 +25,15 @@
         <h6>Last name:</h6>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
         <h6>Country:</h6>
-        <input type="text" th:field="*{country}" class="form-control mb-4 col-4">
+<!--        <input type="text" th:field="*{country}" class="form-control mb-4 col-4">-->
+
+        <select name="country">
+            <option th:each="name : ${employer.getCountry().getCountryValues()}"
+                    th:selected="${name == employer.getCountry()}" th:value="${name}"
+                    th:text="${name.getName()}"></option>
+        </select>
+        <hr>
+
         <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
