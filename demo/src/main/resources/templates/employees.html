@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <style>
+    header {
+background-color: #204B53;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+padding: 5px;
+text-align: center;
+font-size: 35px;
+color: black;
+}
+
+body {
+background-image: url('https://www.htmlcsscolor.com/preview/gallery/204B53.png');
+  background-image: url('https://img.freepik.com/premium-photo/business-man-pushing-touch-screen-interface-java-programming-concept-virtual-machine_161452-10201.jpg?w=1380');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+article {
+  float: left;
+  padding: 1px;
+  width: 100%;
+  color: black;
+  background-color: #204B53;
+}
+
+
+    </style>
+
     <meta charset="UTF-8">
     <title>Employee Management System</title>
 
@@ -12,53 +44,64 @@
 <body>
 
 <div class="container-fluid">
-<!--    <div class="container my-2">-->
-    <h1 id="top"> Employees List </h1>
+    <!--    <div class="container my-2">-->
+    <header>
+        <h1 id="top"> Employees List </h1>
+    </header>
 
     <a th:href="@{/employee/showNewEmployeeForm}" class="btn btn-info btn-sm mb-3">Add Employee</a>
     <a th:href="@{/}" class="btn btn-info btn-sm mb-3"> Back to Home page</a>
-    <table border="1" class="table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>Status</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Salary</th>
-            <th>Created on</th>
-            <th>Updated on</th>
-            <th>Actions</th>
-            <th>Flag</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee : ${listEmployees}">
 
-            <td th:switch="${employee.status.toString()}">
-                <span th:case="${'ACTIVE'}" class="btn btn-success btn-md disabled" th:text="${employee.status}"></span>
-                <span th:case="${'INACTIVE'}" class="btn btn-secondary btn-md disabled"
-                      th:text="${employee.status}"></span>
-            </td>
-            <td th:text="${employee.firstName}"></td>
-            <td th:text="${employee.lastName}"></td>
-            <td th:text="${employee.email}"></td>
-            <td th:text="${employee.salary} + ' BGN'"></td>
-            <td th:text="${employee.createdOn}"></td>
-            <td th:text="${employee.updatedOn}"></td>
-            <td>
-                <a th:href="@{/employee/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-warning">Update</a>
-                <a th:href="@{/employee/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete Employee</a>
-            </td>
-            <td>
-                <a th:href="@{/employee/changeEmployeeStatus/DELETED/{id}(id=${employee.id})}" class="btn btn-primary">Delete</a>
-                <a th:href="@{/employee/changeEmployeeStatus/INACTIVE/{id}(id=${employee.id})}" class="btn btn-info">Restore</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <article>
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Created on</th>
+                <th>Updated on</th>
+                <th>Actions</th>
+                <th>Flag</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${listEmployees}">
 
-    <a href="#top" class="btn btn-info btn-sm mb-3"> Go to top </a>
+                <td th:switch="${employee.status.toString()}">
+                    <span th:case="${'ACTIVE'}" class="btn btn-success btn-md disabled"
+                          th:text="${employee.status}"></span>
+                    <span th:case="${'INACTIVE'}" class="btn btn-secondary btn-md disabled"
+                          th:text="${employee.status}"></span>
+                </td>
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.salary} + ' BGN'"></td>
+                <td th:text="${employee.createdOn}"></td>
+                <td th:text="${employee.updatedOn}"></td>
+                <td>
+                    <a th:href="@{/employee/showFormForUpdate/{id}(id=${employee.id})}"
+                       class="btn btn-warning">Update</a>
+                    <a th:href="@{/employee/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete
+                        Employee</a>
+                </td>
+                <td>
+                    <a th:href="@{/employee/changeEmployeeStatus/DELETED/{id}(id=${employee.id})}"
+                       class="btn btn-primary">Delete</a>
+                    <a th:href="@{/employee/changeEmployeeStatus/INACTIVE/{id}(id=${employee.id})}"
+                       class="btn btn-info">Restore</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
 
+    <footer>
+        <a href="#top" class="btn btn-info btn-sm mb-3"> Go to top </a>
+    </footer>
 </div>
 </body>
 </html>
