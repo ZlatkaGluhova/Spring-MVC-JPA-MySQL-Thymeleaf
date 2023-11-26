@@ -38,15 +38,18 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <style class="container-fluid">
 header {
-background-color: #204B53;
+background-color: rgba(159, 203, 213, 0.90);
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
 padding: 5px;
-text-align: center;
+text-align: left;
 font-size: 35px;
-color: white;
+color: black;
 }
+.logo {
+        max-width: 20px;
+      }
 
 
 
@@ -78,10 +81,15 @@ background-image: url('https://www.htmlcsscolor.com/preview/gallery/204B53.png')
 <div class="container-fluid">
     <header>
 
-        <h1> Welcome to the IT Company </h1>
-        <a th:href="@{/employee}" class="btn btn-info btn-sm mb-3">Employees</a>
-        <a th:href="@{/employer}" class="btn btn-info btn-sm mb-3">Employers</a>
-        <a th:href="@{/department}" class="btn btn-info btn-sm mb-3">Departments</a>
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/2FM0VVN/newLogo.png" alt="newLogo" border="0"></a>
+
+<!--        <a href="https://imgbb.com/"><img src="https://i.ibb.co/2FM0VVN/newLogo.png" alt="newLogo" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>upload</a><br />-->
+<!--        <h1>  </h1>-->
+<!--        <h1> Welcome to the IT Company </h1>-->
+
+        <a th:href="@{/employee}" class="btn btn-outline-dark btn-lg">Employees</a>
+        <a th:href="@{/employer}" class="btn btn-outline-dark btn-lg">Employers</a>
+        <a th:href="@{/department}" class="btn btn-outline-dark btn-lg">Departments</a>
 
     </header>
 
