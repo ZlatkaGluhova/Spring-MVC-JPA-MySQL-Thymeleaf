@@ -5,6 +5,7 @@ import com.management.system.demo.dto.EmployerDTO;
 import com.management.system.demo.model.Department;
 import com.management.system.demo.model.Employer;
 import com.management.system.demo.repository.DepartmentRepository;
+import com.management.system.demo.repository.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private EmployerRepository employerRepository;
 
     @Override
     public List<DepartmentDTO> getAllDepartments() {
@@ -29,7 +33,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         List<DepartmentDTO> departmentsDTO = new ArrayList<>();
 
         for (Department department : departments) {
+            Employer employer = employerRepository.findByDepartment_id(department.getId());
             DepartmentDTO departmentDTO = new DepartmentDTO(department);
+            if (employer != null) {
+                departmentDTO.setEmployerDTO(new EmployerDTO(employer));
+            }
             departmentsDTO.add(departmentDTO);
         }
 

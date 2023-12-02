@@ -31,7 +31,7 @@
         <tr th:each="department : ${listDepartments}">
             <td th:text="${department.id}"></td>
             <td th:text="${department.departmentName.name}"></td>
-            <td th:text="${department.employerDTO.fullName}"></td>
+            <td th:text="${department.employerDTO} != null ? ${department.employerDTO.fullName} : ' - '"></td>
             <td th:text="${department.numberOfEmployees}"></td>
             <td th:text="${department.optionalHomeOffice} ? 'YES' : 'NO'"></td>
             <td>

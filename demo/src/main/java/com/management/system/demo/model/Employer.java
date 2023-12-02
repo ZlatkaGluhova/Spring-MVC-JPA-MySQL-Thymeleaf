@@ -43,6 +43,14 @@ public class Employer {
     public Employer() {
     }
 
+    public Employer(String firstName, String lastName, Country country, BigDecimal salary, LocalDateTime createdOn) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.salary = salary;
+        this.createdOn = createdOn;
+    }
+
     public Employer(String firstName, String lastName, Country country, BigDecimal salary, Department department, LocalDateTime createdOn) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,6 +59,7 @@ public class Employer {
         this.department = department;
         this.createdOn = createdOn;
     }
+
 
     public Long getId() {
         return id;

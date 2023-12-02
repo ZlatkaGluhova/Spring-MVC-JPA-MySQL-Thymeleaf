@@ -2,7 +2,6 @@ package com.management.system.demo.dto;
 
 import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.model.Department;
-import com.management.system.demo.model.Employer;
 
 public class DepartmentDTO {
     private Long id;
@@ -14,10 +13,12 @@ public class DepartmentDTO {
     public DepartmentDTO() {
     }
 
-    public DepartmentDTO(Department department){
+    public DepartmentDTO(Department department) {
         this.id = department.getId();
         this.departmentName = department.getDepartmentName();
-        this.employerDTO = new EmployerDTO(department.getEmployer());
+//        if (department.getEmployer() != null) {
+//            this.employerDTO = new EmployerDTO(department.getEmployer());
+//        }
         this.numberOfEmployees = department.getNumberOfEmployees();
         this.optionalHomeOffice = department.isOptionalHomeOffice();
 

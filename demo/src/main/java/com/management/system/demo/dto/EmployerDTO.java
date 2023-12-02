@@ -10,8 +10,12 @@ public class EmployerDTO extends Employer {
     public EmployerDTO() {
     }
 
-    public EmployerDTO(Employer employer){
-        super(employer.getFirstName(), employer.getLastName(), employer.getCountry(), employer.getSalary(), employer.getDepartment(), employer.getCreatedOn());
+    public EmployerDTO(Employer employer) {
+        super(employer.getFirstName(),
+                employer.getLastName(),
+                employer.getCountry(),
+                employer.getSalary(),
+                employer.getCreatedOn());
         this.fullName = employer.getFirstName() + " " + employer.getLastName();
     }
 

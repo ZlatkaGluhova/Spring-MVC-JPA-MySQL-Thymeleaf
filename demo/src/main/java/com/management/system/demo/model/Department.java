@@ -18,9 +18,9 @@ public class Department {
     @Column(name = "name")
     private DepartmentName departmentName;
 
-    //employer
-    @OneToOne(mappedBy = "department")
-    private Employer employer;
+//    //employer
+//    @OneToOne(mappedBy = "department")
+//    private Employer employer;
 
     @Column(name = "numbers_of_employees")
     private int numberOfEmployees;
@@ -69,13 +69,13 @@ public class Department {
         this.optionalHomeOffice = optionalHomeOffice;
     }
 
-    public Employer getEmployer() {
-        return employer;
-    }
-
-    public void setEmployer(Employer employer) {
-        this.employer = employer;
-    }
+//    public Employer getEmployer() {
+//        return employer;
+//    }
+//
+//    public void setEmployer(Employer employer) {
+//        this.employer = employer;
+//    }
 
     @Override
     public String toString() {
@@ -84,7 +84,7 @@ public class Department {
                 ", departmentName=" + departmentName +
                 ", numberOfEmployees=" + numberOfEmployees +
                 ", optionalHomeOffice=" + optionalHomeOffice +
-                ", employer=" + employer +
+//                ", employer=" + employer +
                 '}';
     }
 }
