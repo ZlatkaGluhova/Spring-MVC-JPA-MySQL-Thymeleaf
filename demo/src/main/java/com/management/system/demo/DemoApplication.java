@@ -1,5 +1,6 @@
 package com.management.system.demo;
 
+import com.management.system.demo.dto.EmployerDTO;
 import com.management.system.demo.enums.Country;
 import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.enums.Status;
@@ -37,15 +38,15 @@ public class DemoApplication {
 
     }
 
-    @Bean
-    InitializingBean sendMockDataToDatabase() {
-        return () -> {
-            createDepartment();
-            createEmployer();
-            createEmployee();
-
-        };
-    }
+//    @Bean
+//    InitializingBean sendMockDataToDatabase() {
+//        return () -> {
+//            createDepartment();
+//            createEmployer();
+//            createEmployee();
+//
+//        };
+//    }
 
     private void createDepartment() {
         departmentService.saveDepartment(new Department(DepartmentName.IT, 8, true));

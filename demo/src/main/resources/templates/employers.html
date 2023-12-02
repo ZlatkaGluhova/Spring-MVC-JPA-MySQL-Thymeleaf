@@ -39,8 +39,7 @@
             <td th:text="${employer.lastName}"></td>
             <td th:text="${employer.country.name}"></td>
             <td th:text="${employer.salary} + ' BGN'"></td>
-<!--            <td th:text="${employer.department}"></td>-->
-            <td th:text="department"></td>
+            <td th:text="${employer.department.departmentName}"></td>
             <td th:text="${employer.createdOn}"></td>
             <td th:text="${employer.updatedOn}"></td>
             <td>

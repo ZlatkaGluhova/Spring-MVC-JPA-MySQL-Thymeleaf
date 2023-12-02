@@ -2,6 +2,7 @@ package com.management.system.demo.controller;
 
 
 import com.management.system.demo.constants.Constant;
+import com.management.system.demo.dto.DepartmentDTO;
 import com.management.system.demo.enums.ConstantType;
 import com.management.system.demo.model.Department;
 import com.management.system.demo.service.DepartmentService;
@@ -21,8 +22,8 @@ public class DepartmentController {
 
     @GetMapping
     public String showDepartments(Model model) {
-        List<Department> departments = departmentService.getAllDepartments();
-        model.addAttribute("listDepartments", departments);
+        List<DepartmentDTO> departmentsDTO = departmentService.getAllDepartments();
+        model.addAttribute("listDepartments", departmentsDTO);
 
         return ConstantType.DEPARTMENT.getListType();
     }
