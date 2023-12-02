@@ -28,6 +28,11 @@ public class Employer {
     @Column(name = "salary")
     private BigDecimal salary;
 
+    //dep
+    @OneToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    private Department department;
+
     @Column(name = "created_on")
     private LocalDateTime createdOn;
 
@@ -36,6 +41,15 @@ public class Employer {
 
 
     public Employer() {
+    }
+
+    public Employer(String firstName, String lastName, Country country, BigDecimal salary, Department department, LocalDateTime createdOn) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.salary = salary;
+        this.department = department;
+        this.createdOn = createdOn;
     }
 
     public Long getId() {
@@ -78,6 +92,14 @@ public class Employer {
         this.salary = salary;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public LocalDateTime getCreatedOn() {
         return createdOn;
     }
@@ -102,6 +124,7 @@ public class Employer {
                 ", lastName='" + lastName + '\'' +
                 ", country=" + country +
                 ", salary=" + salary +
+                ", department=" + department +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
                 '}';

@@ -18,6 +18,10 @@ public class Department {
     @Column(name = "name")
     private DepartmentName departmentName;
 
+    //employer
+    @OneToOne(mappedBy = "department")
+    private Employer employer;
+
     @Column(name = "numbers_of_employees")
     private int numberOfEmployees;
 
@@ -25,6 +29,12 @@ public class Department {
     private boolean optionalHomeOffice;
 
     public Department() {
+    }
+
+    public Department(DepartmentName departmentName, int numberOfEmployees, boolean optionalHomeOffice) {
+        this.departmentName = departmentName;
+        this.numberOfEmployees = numberOfEmployees;
+        this.optionalHomeOffice = optionalHomeOffice;
     }
 
     public Long getId() {
@@ -59,13 +69,22 @@ public class Department {
         this.optionalHomeOffice = optionalHomeOffice;
     }
 
+    public Employer getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
-                ", name=" + departmentName +
+                ", departmentName=" + departmentName +
                 ", numberOfEmployees=" + numberOfEmployees +
                 ", optionalHomeOffice=" + optionalHomeOffice +
+                ", employer=" + employer +
                 '}';
     }
 }
