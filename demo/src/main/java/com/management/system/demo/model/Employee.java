@@ -27,6 +27,10 @@ public class Employee {
     @Column(name = "age")
     private int age;
 
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
     @Column(name = "salary")
     private BigDecimal salary;
 
@@ -49,6 +53,17 @@ public class Employee {
         this.lastName = lastName;
         this.email = email;
         this.age = age;
+        this.salary = salary;
+        this.createdOn = createdOn;
+        this.status = status;
+    }
+
+    public Employee(String firstName, String lastName, String email, int age, Department department, BigDecimal salary, LocalDateTime createdOn, Status status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.department = department;
         this.salary = salary;
         this.createdOn = createdOn;
         this.status = status;
@@ -96,6 +111,14 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public BigDecimal getSalary() {

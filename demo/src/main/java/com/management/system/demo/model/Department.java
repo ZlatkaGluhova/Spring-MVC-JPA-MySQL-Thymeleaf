@@ -84,7 +84,6 @@ public class Department {
                 ", departmentName=" + departmentName +
                 ", numberOfEmployees=" + numberOfEmployees +
                 ", optionalHomeOffice=" + optionalHomeOffice +
-//                ", employer=" + employer +
                 '}';
     }
 }
