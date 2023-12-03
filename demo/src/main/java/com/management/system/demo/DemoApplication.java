@@ -33,18 +33,17 @@ public class DemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
-
     }
 
-    @Bean
-    InitializingBean sendMockDataToDatabase() {
-        return () -> {
-            createDepartment();
-            createEmployer();
-            createEmployee();
-
-        };
-    }
+//    @Bean
+//    InitializingBean sendMockDataToDatabase() {
+//        return () -> {
+//            createDepartment();
+//            createEmployer();
+//            createEmployee();
+//
+//        };
+//    }
 
     private void createDepartment() {
         departmentService.saveDepartment(new Department(DepartmentName.IT, 8, true));

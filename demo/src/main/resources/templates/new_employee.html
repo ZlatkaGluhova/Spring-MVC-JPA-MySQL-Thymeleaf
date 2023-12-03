@@ -23,6 +23,13 @@
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
         <h6>Age:</h6>
         <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
+        <h6>Department:</h6>
+        <select name="department.id">
+            <option th:value="${1L}" th:text="${'Information Technology'}"></option>
+            <option th:value="${2L}" th:text="${'Human Resources'}"></option>
+            <option th:value="${3L}" th:text="${'Financial Service'}"></option>
+        </select>
+        <hr>
         <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 

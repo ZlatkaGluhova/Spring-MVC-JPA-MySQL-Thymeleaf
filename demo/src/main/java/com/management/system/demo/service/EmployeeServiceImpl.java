@@ -38,6 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeFromDB.setLastName(employee.getLastName());
         employeeFromDB.setEmail(employee.getEmail());
         employeeFromDB.setAge(employee.getAge());
+        employeeFromDB.setDepartment(employee.getDepartment());
         employeeFromDB.setSalary(employee.getSalary());
         employeeFromDB.setUpdatedOn(LocalDateTime.now());
         employeeFromDB.setStatus(employee.getStatus());

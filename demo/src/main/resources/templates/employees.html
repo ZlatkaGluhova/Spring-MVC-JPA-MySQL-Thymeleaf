@@ -80,8 +80,7 @@ article {
                 <td th:text="${employee.firstName}"></td>
                 <td th:text="${employee.lastName}"></td>
                 <td th:text="${employee.email}"></td>
-<!--                <td th:text="${employee.department}"></td>-->
-                <td th:text="department"></td>
+                <td th:text="${employee.department.departmentName}"></td>
                 <td th:text="${employee.salary} + ' BGN'"></td>
                 <td th:text="${employee.createdOn}"></td>
                 <td th:text="${employee.updatedOn}"></td>

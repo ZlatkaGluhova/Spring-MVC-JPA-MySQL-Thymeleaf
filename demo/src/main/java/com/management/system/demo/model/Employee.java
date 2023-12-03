@@ -48,15 +48,15 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, int age, BigDecimal salary, LocalDateTime createdOn, Status status) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-        this.salary = salary;
-        this.createdOn = createdOn;
-        this.status = status;
-    }
+//    public Employee(String firstName, String lastName, String email, int age, BigDecimal salary, LocalDateTime createdOn, Status status) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.age = age;
+//        this.salary = salary;
+//        this.createdOn = createdOn;
+//        this.status = status;
+//    }
 
     public Employee(String firstName, String lastName, String email, int age, Department department, BigDecimal salary, LocalDateTime createdOn, Status status) {
         this.firstName = firstName;
@@ -161,6 +161,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
+                ", department=" + department +
                 ", salary=" + salary +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
