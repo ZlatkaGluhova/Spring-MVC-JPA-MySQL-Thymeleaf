@@ -1,10 +1,14 @@
 package com.management.system.demo.service;
 
+import com.management.system.demo.dto.DepartmentDTO;
+import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.enums.Status;
+import com.management.system.demo.model.Department;
 import com.management.system.demo.model.Employee;
 import com.management.system.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,6 +19,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     @Override
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
@@ -22,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void saveEmployee(Employee employee) {
-        if (employee.getId() != null){
+        if (employee.getId() != null) {
             employee = mappedDataFromEmployeeToEmployeeDB(employee);
         } else {
             employee.setCreatedOn(LocalDateTime.now());
@@ -38,12 +45,27 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeFromDB.setLastName(employee.getLastName());
         employeeFromDB.setEmail(employee.getEmail());
         employeeFromDB.setAge(employee.getAge());
-        employeeFromDB.setDepartment(employee.getDepartment());
+        Department mappedDepartment = mappedEmployeeDepartment(employee);
+        employeeFromDB.setDepartment(mappedDepartment);
+//        employeeFromDB.setDepartment(employee.getDepartment());
         employeeFromDB.setSalary(employee.getSalary());
         employeeFromDB.setUpdatedOn(LocalDateTime.now());
         employeeFromDB.setStatus(employee.getStatus());
 
         return employeeFromDB;
+    }
+
+    private Department mappedEmployeeDepartment(Employee employee) {
+        DepartmentName employeeDepartmentName = employee.getDepartment().getDepartmentName();
+        Department mappedDepartment = null;
+        List<DepartmentDTO> departmentsDTO = departmentService.getAllDepartments();
+        for (DepartmentDTO departmentDTO : departmentsDTO) {
+            if (employeeDepartmentName.equals(departmentDTO.getDepartmentName())) {
+                mappedDepartment = departmentService.getDepartmentById(departmentDTO.getId());
+            }
+        }
+
+        return mappedDepartment;
     }
 
     @Override

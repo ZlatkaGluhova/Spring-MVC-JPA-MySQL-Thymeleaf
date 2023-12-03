@@ -32,11 +32,18 @@
 <!--                    th:text="${name.getName()}"></option>-->
 <!--        </select>-->
 
-        <select name="department.id">
-            <option th:value="${1L}" th:text="${'Information Technology'}"></option>
-            <option th:value="${2L}" th:text="${'Human Resources'}"></option>
-            <option th:value="${3L}" th:text="${'Financial Service'}"></option>
+<!--        <select name="department.id">-->
+<!--            <option th:value="${1L}" th:text="${'Information Technology'}"></option>-->
+<!--            <option th:value="${2L}" th:text="${'Human Resources'}"></option>-->
+<!--            <option th:value="${3L}" th:text="${'Financial Service'}"></option>-->
+<!--        </select>-->
+
+        <select name="department.departmentName">
+            <option th:each="name : ${employee.department.getDepartmentName().getDepartmentValues()}"
+                    th:selected="${name == employee.department.getDepartmentName()}" th:value="${name}"
+                    th:text="${name.getName()}"></option>
         </select>
+
 
         <hr>
         <h6>Salary:</h6>
