@@ -46,9 +46,9 @@ public class DemoApplication {
 //    }
 
     private void createDepartment() {
-        departmentService.saveDepartment(new Department(DepartmentName.IT, 8, true));
-        departmentService.saveDepartment(new Department(DepartmentName.HR, 2, false));
-        departmentService.saveDepartment(new Department(DepartmentName.FINANCE, 5, false));
+        departmentService.saveDepartment(new Department(DepartmentName.IT, 0, true));
+        departmentService.saveDepartment(new Department(DepartmentName.HR, 0, false));
+        departmentService.saveDepartment(new Department(DepartmentName.FINANCE, 0, false));
     }
 
     private void createEmployer() {

@@ -35,7 +35,15 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setCreatedOn(LocalDateTime.now());
         }
 
-        this.employeeRepository.save(employee);
+        Department employeeDepartment = departmentService.getDepartmentById(employee.getDepartment().getId());
+        employee.setDepartment(employeeDepartment);
+
+        Employee createdEmployee = this.employeeRepository.save(employee);
+
+        Department department = createdEmployee.getDepartment();
+        department.setNumberOfEmployees(department.getNumberOfEmployees() + 1);
+
+        departmentService.saveDepartment(department);
     }
 
     private Employee mappedDataFromEmployeeToEmployeeDB(Employee employee) {
@@ -45,6 +53,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeFromDB.setLastName(employee.getLastName());
         employeeFromDB.setEmail(employee.getEmail());
         employeeFromDB.setAge(employee.getAge());
+
+        Department departmentFromDB = employeeFromDB.getDepartment();
+        departmentFromDB.setNumberOfEmployees(departmentFromDB.getNumberOfEmployees() - 1);
 
         DepartmentName departmentName = employee.getDepartment().getDepartmentName();
         Department department = departmentService.getDepartmentByDepartmentName(departmentName);
