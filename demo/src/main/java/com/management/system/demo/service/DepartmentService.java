@@ -1,6 +1,7 @@
 package com.management.system.demo.service;
 
 import com.management.system.demo.dto.DepartmentDTO;
+import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.model.Department;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface DepartmentService {
     void saveDepartment(Department department);
 
     Department getDepartmentById(Long id);
+
+    Department getDepartmentByDepartmentName(DepartmentName departmentName);
 }

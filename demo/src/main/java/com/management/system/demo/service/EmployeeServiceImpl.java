@@ -45,27 +45,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeFromDB.setLastName(employee.getLastName());
         employeeFromDB.setEmail(employee.getEmail());
         employeeFromDB.setAge(employee.getAge());
-        Department mappedDepartment = mappedEmployeeDepartment(employee);
-        employeeFromDB.setDepartment(mappedDepartment);
-//        employeeFromDB.setDepartment(employee.getDepartment());
+
+        DepartmentName departmentName = employee.getDepartment().getDepartmentName();
+        Department department = departmentService.getDepartmentByDepartmentName(departmentName);
+        employeeFromDB.setDepartment(department);
+
         employeeFromDB.setSalary(employee.getSalary());
         employeeFromDB.setUpdatedOn(LocalDateTime.now());
         employeeFromDB.setStatus(employee.getStatus());
 
         return employeeFromDB;
-    }
-
-    private Department mappedEmployeeDepartment(Employee employee) {
-        DepartmentName employeeDepartmentName = employee.getDepartment().getDepartmentName();
-        Department mappedDepartment = null;
-        List<DepartmentDTO> departmentsDTO = departmentService.getAllDepartments();
-        for (DepartmentDTO departmentDTO : departmentsDTO) {
-            if (employeeDepartmentName.equals(departmentDTO.getDepartmentName())) {
-                mappedDepartment = departmentService.getDepartmentById(departmentDTO.getId());
-            }
-        }
-
-        return mappedDepartment;
     }
 
     @Override

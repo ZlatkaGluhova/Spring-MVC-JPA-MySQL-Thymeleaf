@@ -2,6 +2,7 @@ package com.management.system.demo.service;
 
 import com.management.system.demo.dto.DepartmentDTO;
 import com.management.system.demo.dto.EmployerDTO;
+import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.model.Department;
 import com.management.system.demo.model.Employer;
 import com.management.system.demo.repository.DepartmentRepository;
@@ -52,7 +53,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department getDepartmentById(Long id) {
-        Department department = departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found for id : " + id));
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found with id : " + id));
+
+        return department;
+    }
+
+    @Override
+    public Department getDepartmentByDepartmentName(DepartmentName departmentName) {
+        Department department = departmentRepository.findByDepartmentName(departmentName).orElseThrow(() -> new RuntimeException("Department not found with Department name : " + departmentName));
 
         return department;
     }
