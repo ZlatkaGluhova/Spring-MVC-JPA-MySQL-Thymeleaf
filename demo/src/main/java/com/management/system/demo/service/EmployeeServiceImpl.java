@@ -54,8 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeFromDB.setEmail(employee.getEmail());
         employeeFromDB.setAge(employee.getAge());
 
-        Department departmentFromDB = employeeFromDB.getDepartment();
-        departmentFromDB.setNumberOfEmployees(departmentFromDB.getNumberOfEmployees() - 1);
+        decreaseNumberOfEmployeesFromDepartment(employeeFromDB);
 
         DepartmentName departmentName = employee.getDepartment().getDepartmentName();
         Department department = departmentService.getDepartmentByDepartmentName(departmentName);
@@ -68,6 +67,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeFromDB;
     }
 
+    private void decreaseNumberOfEmployeesFromDepartment(Employee employee) {
+        Department department = employee.getDepartment();
+        department.setNumberOfEmployees(department.getNumberOfEmployees() - 1);
+    }
+
     @Override
     public Employee getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found for id : " + id));
@@ -77,13 +81,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployeeById(Long id) {
+        Employee employee = getEmployeeById(id);
+        decreaseNumberOfEmployeesFromDepartment(employee);
+
         this.employeeRepository.deleteById(id);
+
+        departmentService.saveDepartment(employee.getDepartment());
     }
 
     @Override
     public void changeEmployeeStatus(Long id, Status status) {
         Employee employee = getEmployeeById(id);
         employee.setStatus(status);
+        if (status.getType().equals("Deleted")){
+            decreaseNumberOfEmployeesFromDepartment(employee);
+        }
+
         employee.setUpdatedOn(LocalDateTime.now());
         saveEmployee(employee);
     }
