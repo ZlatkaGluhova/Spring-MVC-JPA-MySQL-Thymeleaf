@@ -1,6 +1,7 @@
 package com.management.system.demo.controller;
 
 import com.management.system.demo.enums.ConstantType;
+import com.management.system.demo.enums.Status;
 import com.management.system.demo.helper.TestHelper;
 import com.management.system.demo.model.Employee;
 import com.management.system.demo.model.Employer;
@@ -107,10 +108,46 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void testDeleteEmployee_Success() {
+    void testDeleteEmployee_Success() throws Exception {
+        Long id = 1L;
+        Employee employee = TestHelper.createEmployee(id);
+
+        doNothing().when(employeeService).deleteEmployeeById(id);
+
+
+        String url = "/employee/deleteEmployee/{id}";
+        ResultActions result = mockMvc.perform(get(url, id)
+                .flashAttr(ConstantType.EMPLOYEE.getType(), employee));
+        result.andExpect(status().is3xxRedirection());
+        result.andExpect(view().name(ConstantType.EMPLOYEE.getRedirectType()));
+//        result.andExpect(model().attributeExists(ConstantType.EMPLOYEE.getType()));
+
+        verify(employeeService).deleteEmployeeById(id);
+
+
     }
 
     @Test
-    void testChangeEmployeeStatus_Success() {
+    void testChangeEmployeeStatus_Success() throws Exception {
+        Long id = 1L;
+        Status status = Status.INACTIVE;
+
+        Employee employee = TestHelper.createEmployee(id);
+
+        doNothing().when(employeeService).changeEmployeeStatus(id, status);
+//        when(employeeService.changeEmployeeStatus(id, status)).thenCallRealMethod();
+//        doCallRealMethod().when(employeeService).changeEmployeeStatus(id, status);
+//        when(employeeService.changeEmployeeStatus(id, status)).thenCallRealMethod();
+
+
+        String url = "/employee/changeEmployeeStatus/{status}/{id}";
+        ResultActions result = mockMvc.perform(get(url, status, id)
+                .flashAttr(ConstantType.EMPLOYEE.getType(), employee));
+
+        result.andExpect(status().is3xxRedirection());
+        result.andExpect(view().name(ConstantType.EMPLOYEE.getRedirectType()));
+
+        verify(employeeService).changeEmployeeStatus(id, status);
+
     }
 }
