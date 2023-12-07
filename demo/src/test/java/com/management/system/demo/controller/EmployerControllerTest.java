@@ -9,25 +9,13 @@ import com.management.system.demo.service.EmployerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -62,6 +50,8 @@ public class EmployerControllerTest {
         result.andExpect(status().is3xxRedirection());
         result.andExpect(view().name(ConstantType.EMPLOYER.getRedirectType()));
 
+        verify(employerService).saveEmployer(employer);
+
 
 //                .andExpect(model().attributeExists("employer"))
 //        ResultActions resultActions = result.andExpect(status().is3xxRedirection()).andExpect(view().name(ConstantType.EMPLOYER.getRedirectType()));
@@ -90,6 +80,7 @@ public class EmployerControllerTest {
         result.andExpect(view().name(ConstantType.EMPLOYER.getListType()));
         result.andExpect(model().attributeExists("listEmployers"));
 
+        verify(employerService).getAllEmployers();
 //        andExpect(model().attributeExists("employer"))
 //        ResultActions resultActions = result.andExpect(status().isOk())
 //                .andExpect(view().name(ConstantType.EMPLOYER.getRedirectType()));
@@ -104,6 +95,57 @@ public class EmployerControllerTest {
 //            return ConstantType.EMPLOYER.getListType();
 //        }
 
+
+    }
+
+
+    @Test
+    public void showNewEmployerForm() throws Exception {
+
+        Employer employer = new Employer();
+//        String requestBody = TestHelper.asJsonString(employer);
+
+//        doNothing().when(employerService).saveEmployer(employer);
+
+
+        String url = "/employer/showNewEmployerForm";
+        ResultActions result = mockMvc.perform(get(url)
+                .flashAttr(ConstantType.EMPLOYER.getType(), employer));
+        result.andExpect(status().isOk());
+        result.andExpect(view().name(ConstantType.EMPLOYER.getNewType()));
+        result.andExpect(model().attributeExists(ConstantType.EMPLOYER.getType()));
+
+    }
+
+
+    @Test
+    public void showFormForUpdate() throws Exception {
+        Long id = 1L;
+        Employer employer = TestHelper.createEmployer(id);
+//        String requestBody = TestHelper.asJsonString(employer);
+
+        when(employerService.getEmployerById(id)).thenReturn(employer);
+
+
+        String url = "/employer/showFormForUpdate/{id}";
+        ResultActions result = mockMvc.perform(get(url, id)
+                .flashAttr(ConstantType.EMPLOYER.getType(), employer));
+        result.andExpect(status().isOk());
+        result.andExpect(view().name(ConstantType.EMPLOYER.getUpdateType()));
+        result.andExpect(model().attributeExists(ConstantType.EMPLOYER.getType()));
+
+        verify(employerService).getEmployerById(id);
+//        @GetMapping("/showFormForUpdate/{id}")
+//        public String showFormForUpdate(@PathVariable(value = Constant.ID) Long id, Model model) {
+//
+//            //get the model from the service
+//            Employer employer = employerService.getEmployerById(id);
+
+//            //set employee as a model attribute to pre-populate the form
+//            model.addAttribute(ConstantType.EMPLOYER.getType(), employer);
+
+//            return ConstantType.EMPLOYER.getUpdateType();
+//        }
 
     }
 
