@@ -5,6 +5,7 @@ import com.management.system.demo.enums.Country;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
@@ -123,6 +124,26 @@ public class Employer {
 
     public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employer employer = (Employer) o;
+        return Objects.equals(id, employer.id) &&
+                Objects.equals(firstName, employer.firstName) &&
+                Objects.equals(lastName, employer.lastName) &&
+                country == employer.country &&
+                Objects.equals(salary, employer.salary) &&
+                Objects.equals(department, employer.department) &&
+                Objects.equals(createdOn, employer.createdOn) &&
+                Objects.equals(updatedOn, employer.updatedOn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, country, salary, department, createdOn, updatedOn);
     }
 
     @Override

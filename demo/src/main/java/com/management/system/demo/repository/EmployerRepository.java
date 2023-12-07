@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface EmployerRepository extends JpaRepository<Employer, Long> {
+
     List<Employer> findAll();
 
     Employer findByDepartment_id(Long departmentId);
