@@ -36,7 +36,7 @@ public class EmployerControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void saveEmployer() throws Exception {
+    public void testSaveEmployer_Success() throws Exception {
         //arrange
         Employer employer = TestHelper.createEmployer(null);
 //        String requestBody = TestHelper.asJsonString(employer);
@@ -68,7 +68,7 @@ public class EmployerControllerTest {
     }
 
     @Test
-    public void showEmployers() throws Exception {
+    public void testShowEmployers_Success() throws Exception {
         List<Employer> employers = TestHelper.createEmployerList();
 
         when(employerService.getAllEmployers()).thenReturn(employers);
@@ -100,7 +100,7 @@ public class EmployerControllerTest {
 
 
     @Test
-    public void showNewEmployerForm() throws Exception {
+    public void testShowNewEmployerForm_Success() throws Exception {
 
         Employer employer = new Employer();
 //        String requestBody = TestHelper.asJsonString(employer);
@@ -119,7 +119,7 @@ public class EmployerControllerTest {
 
 
     @Test
-    public void showFormForUpdate() throws Exception {
+    public void testShowFormForUpdate_Success() throws Exception {
         Long id = 1L;
         Employer employer = TestHelper.createEmployer(id);
 //        String requestBody = TestHelper.asJsonString(employer);

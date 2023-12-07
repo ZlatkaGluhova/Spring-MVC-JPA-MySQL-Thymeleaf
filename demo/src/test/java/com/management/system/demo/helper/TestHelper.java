@@ -3,6 +3,10 @@ package com.management.system.demo.helper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.management.system.demo.enums.Country;
+import com.management.system.demo.enums.DepartmentName;
+import com.management.system.demo.enums.Status;
+import com.management.system.demo.model.Department;
+import com.management.system.demo.model.Employee;
 import com.management.system.demo.model.Employer;
 
 import java.math.BigDecimal;
@@ -47,5 +51,29 @@ public class TestHelper {
         employers.add(TestHelper.createEmployer(3L));
 
         return employers;
+    }
+
+    public static Employee createEmployee(Long id) {
+        Employee employee = new Employee();
+        employee.setId(id);
+        employee.setFirstName("Andrey");
+        employee.setLastName("Petrov");
+        employee.setEmail("andrey@abv.bg");
+        employee.setAge(28);
+        employee.setDepartment(new Department(DepartmentName.IT, 5, true));
+        employee.setSalary(BigDecimal.valueOf(5000));
+        employee.setCreatedOn(LocalDateTime.now());
+        employee.setStatus(Status.ACTIVE);
+
+        return employee;
+    }
+
+    public static List<Employee> createEmployeeList(){
+        List<Employee> employee = new ArrayList<>();
+        employee.add(TestHelper.createEmployee(1L));
+        employee.add(TestHelper.createEmployee(2L));
+        employee.add(TestHelper.createEmployee(3L));
+
+        return employee;
     }
 }
