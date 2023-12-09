@@ -51,6 +51,10 @@ public class EmployerServiceTest {
     }
 
     @Test
-    public void getEmployerById() {
+    public void testGetEmployerById_Success() {
+        Employer employer = TestHelper.createEmployer(2L);
+
+        employerService.getEmployerById(employer.getId());
+
     }
 }
