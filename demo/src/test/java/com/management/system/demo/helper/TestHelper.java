@@ -2,6 +2,7 @@ package com.management.system.demo.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.management.system.demo.dto.DepartmentDTO;
 import com.management.system.demo.enums.Country;
 import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.enums.Status;
@@ -44,7 +45,7 @@ public class TestHelper {
         }
     }
 
-    public static List<Employer> createEmployerList(){
+    public static List<Employer> createEmployerList() {
         List<Employer> employers = new ArrayList<>();
         employers.add(TestHelper.createEmployer(1L));
         employers.add(TestHelper.createEmployer(2L));
@@ -68,7 +69,7 @@ public class TestHelper {
         return employee;
     }
 
-    public static List<Employee> createEmployeeList(){
+    public static List<Employee> createEmployeeList() {
         List<Employee> employee = new ArrayList<>();
         employee.add(TestHelper.createEmployee(1L));
         employee.add(TestHelper.createEmployee(2L));
@@ -76,4 +77,35 @@ public class TestHelper {
 
         return employee;
     }
+
+    public static DepartmentDTO createDepartmentDTO(Long id, DepartmentName departmentName) {
+        DepartmentDTO departmentDTO = new DepartmentDTO();
+        departmentDTO.setId(id);
+        departmentDTO.setDepartmentName(departmentName);
+        departmentDTO.setNumberOfEmployees(5);
+        departmentDTO.setOptionalHomeOffice(true);
+
+        return departmentDTO;
+    }
+
+    public static Department createDepartment(Long id, DepartmentName departmentName) {
+        Department department = new Department();
+        department.setId(id);
+        department.setDepartmentName(departmentName);
+        department.setNumberOfEmployees(7);
+        department.setOptionalHomeOffice(true);
+
+        return department;
+    }
+
+    public static List<DepartmentDTO> createDepartmentDTOList() {
+        List<DepartmentDTO> departmentDTOS = new ArrayList<>();
+        departmentDTOS.add(TestHelper.createDepartmentDTO(1L, DepartmentName.IT));
+        departmentDTOS.add(TestHelper.createDepartmentDTO(2L, DepartmentName.HR));
+        departmentDTOS.add(TestHelper.createDepartmentDTO(3L, DepartmentName.FINANCE));
+
+        return departmentDTOS;
+    }
+
+
 }
