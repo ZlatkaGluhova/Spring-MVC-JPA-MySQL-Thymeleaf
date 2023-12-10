@@ -107,5 +107,14 @@ public class TestHelper {
         return departmentDTOS;
     }
 
+    public static List<Department> createDepartmentList() {
+        List<Department> departments = new ArrayList<>();
+        departments.add(TestHelper.createDepartment(1L, DepartmentName.IT));
+        departments.add(TestHelper.createDepartment(2L, DepartmentName.HR));
+        departments.add(TestHelper.createDepartment(3L, DepartmentName.FINANCE));
+
+        return departments;
+    }
+
 
 }

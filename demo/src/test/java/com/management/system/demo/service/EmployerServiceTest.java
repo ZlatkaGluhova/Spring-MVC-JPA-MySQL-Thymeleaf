@@ -24,13 +24,11 @@ public class EmployerServiceTest {
 
     @Test
     public void testGetAllEmployers_Success() {
-//        List<Employer> employers = TestHelper.createEmployerList();
 
-        employerService.getAllEmployers();
+        List<Employer> allEmployers = employerService.getAllEmployers();
 
-//        assertEquals(employerService.getAllEmployers(), employers);
+        assertTrue(allEmployers.size() > 0);
 
-//        verify(employerService).getAllEmployers();
     }
 
     @Test
