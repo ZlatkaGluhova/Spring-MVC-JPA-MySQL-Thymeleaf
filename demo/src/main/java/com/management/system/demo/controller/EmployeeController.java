@@ -6,13 +6,20 @@ import com.management.system.demo.enums.ConstantType;
 import com.management.system.demo.enums.Status;
 import com.management.system.demo.model.Employee;
 import com.management.system.demo.service.EmployeeService;
+import com.management.system.demo.service.validations.EmployeeValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -20,8 +27,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private EmployeeValidationService employeeValidationService;
+
     /**
      * display list of employees
+     *
      * @param model
      * @return String
      */
@@ -43,8 +54,19 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+    public String saveEmployee(@ModelAttribute("employee") @Validated Employee employee, BindingResult result, Errors errors) {
         //save employee to db
+
+        String err = employeeValidationService.validateEmployee(employee);
+        if (!err.isEmpty()) {
+            ObjectError error = new ObjectError("globalError", err);
+            result.addError(error);
+        }
+
+        if (errors.hasErrors()) {
+            return ConstantType.EMPLOYEE.getNewType();
+        }
+
         employeeService.saveEmployee(employee);
 
         return ConstantType.EMPLOYEE.getRedirectType();

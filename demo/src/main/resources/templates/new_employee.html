@@ -22,6 +22,7 @@
         <h6>Email:</h6>
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
         <h6>Age:</h6>
+        <p th:if="${#fields.hasErrors('age')}">Invalid Age! (It must be more than 18 and less than 70)</p>
         <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
         <h6>Department:</h6>
         <select name="department.id">
@@ -32,6 +33,17 @@
         <hr>
         <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
+
+<!--        <div th:if="${#fields.hasAnyErrors()}">-->
+<!--            <ul>-->
+<!--                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
+<!--            </ul>-->
+<!--        </div>-->
+
+        <div th:if="${#fields.hasErrors('global')}">
+            <h3>Global errors:</h3>
+            <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error"></p>
+        </div>
 
         <button type="submit" class="btn btn-info col-2">Save Employee</button>
     </form>
