@@ -1,5 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+
+<style>
+    .error {
+        color: red;
+    }
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Employee Management System</title>
@@ -16,13 +24,15 @@
 
     <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST">
         <h6>First name:</h6>
+        <p th:if="${#fields.hasErrors('firstName')}" class="text-danger">Invalid Name! (It must be more than 2 and less than 50 symbols)</p>
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
         <h6>Last name:</h6>
+        <p th:if="${#fields.hasErrors('lastName')}" class="text-danger">Invalid Name! (It must be more than 2 and less than 50 symbols)</p>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
         <h6>Email:</h6>
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
         <h6>Age:</h6>
-        <p th:if="${#fields.hasErrors('age')}">Invalid Age! (It must be more than 18 and less than 70)</p>
+        <p th:if="${#fields.hasErrors('age')}" class="text-danger">Invalid Age! (It must be more than 18 and less than 70)</p>
         <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
         <h6>Department:</h6>
         <select name="department.id">
@@ -34,11 +44,11 @@
         <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
-<!--        <div th:if="${#fields.hasAnyErrors()}">-->
-<!--            <ul>-->
-<!--                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
-<!--            </ul>-->
-<!--        </div>-->
+        <!--        <div th:if="${#fields.hasAnyErrors()}">-->
+        <!--            <ul>-->
+        <!--                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
+        <!--            </ul>-->
+        <!--        </div>-->
 
         <div th:if="${#fields.hasErrors('global')}">
             <h3>Global errors:</h3>

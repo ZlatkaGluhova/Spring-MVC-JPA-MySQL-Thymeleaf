@@ -1,8 +1,11 @@
 package com.management.system.demo.model;
 
 import com.management.system.demo.enums.Country;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,16 +20,22 @@ public class Employer {
     private Long id;
 
     @Column(name = "first_name")
+    @NotNull
+    @Size(min = 2, max = 50)
     private String firstName;
 
     @Column(name = "last_name")
+    @NotNull
+    @Size(min = 2, max = 50)
     private String lastName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "country")
+    @NotNull
     private Country country;
 
     @Column(name = "salary")
+    @NotNull
     private BigDecimal salary;
 
     //dep
