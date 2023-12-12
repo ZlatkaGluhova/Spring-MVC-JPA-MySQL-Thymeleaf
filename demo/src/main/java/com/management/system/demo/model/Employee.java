@@ -17,15 +17,15 @@ public class Employee {
     private Long id;
 
     @Column(name = "first_name")
-//    @NotNull(message = "First name shouldn't be null!")
-//    @NotBlank
-//    @Size(min = 2, max = 50)
+    @NotNull(message = "First name shouldn't be null!")
+    @NotBlank
+    @Size(min = 2, max = 50, message = "Size must be between 2 and 50 symbols")
     private String firstName;
 
     @Column(name = "last_name")
-//    @NotNull(message = "First name shouldn't be null!")
-//    @NotBlank
-//    @Size(min = 2, max = 50)
+    @NotNull(message = "First name shouldn't be null!")
+    @NotBlank
+    @Size(min = 2, max = 50, message = "Size must be between 2 and 50 symbols")
     private String lastName;
 
     @Column(name = "email")
