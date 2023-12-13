@@ -17,23 +17,21 @@ public class Employee {
     private Long id;
 
     @Column(name = "first_name")
-    @NotNull(message = "First name shouldn't be null!")
-    @NotBlank
-    @Size(min = 2, max = 50, message = "Size must be between 2 and 50 symbols")
+    @NotBlank(message = "First name cannot be empty")
+    @Size(min = 2, max = 50, message = "Size for First Name must be between 2 and 50 symbols")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotNull(message = "First name shouldn't be null!")
-    @NotBlank
-    @Size(min = 2, max = 50, message = "Size must be between 2 and 50 symbols")
+    @NotBlank(message = "Last name cannot be empty")
+    @Size(min = 2, max = 50, message = "Size for Last Name must be between 2 and 50 symbols")
     private String lastName;
 
     @Column(name = "email")
-//    @Email(message = "Invalid email address")
+    @NotEmpty(message = "Email address cannot be empty")
+    @Email(message = "Invalid email address")
     private String email;
 
     @Column(name = "age")
-//    @NotBlank(message = "Age should not be empty or null")
     @Min(value = 18, message = "Age should not be less than 18")
     @Max(value = 70, message = "Age should not be more than 70")
     private int age;
@@ -43,7 +41,8 @@ public class Employee {
     private Department department;
 
     @Column(name = "salary")
-//    @NotNull(message = "Salary shouldn't be null!")
+    @NotNull(message = "Salary cannot be empty")
+    @DecimalMin(value = "0.1", message = "Salary must be more than 0")
     private BigDecimal salary;
 
     @Column(name = "created_on")
