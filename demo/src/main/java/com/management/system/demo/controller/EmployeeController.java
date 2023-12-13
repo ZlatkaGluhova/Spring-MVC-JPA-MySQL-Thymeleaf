@@ -54,16 +54,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") @Validated Employee employee, BindingResult result, Errors errors) {
-        //save employee to db
-
-//        String err = employeeValidationService.validateEmployee(employee);
-//        if (!err.isEmpty()) {
-//            ObjectError error = new ObjectError("globalError", err);
-//            result.addError(error);
-//        }
+    public String saveEmployee(@ModelAttribute("employee") @Validated Employee employee, Errors errors) {
 
         if (errors.hasErrors()) {
+
             return ConstantType.EMPLOYEE.getNewType();
         }
 

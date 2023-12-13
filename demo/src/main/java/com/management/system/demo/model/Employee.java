@@ -2,6 +2,7 @@ package com.management.system.demo.model;
 
 
 import com.management.system.demo.enums.Status;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -28,7 +29,7 @@ public class Employee {
 
     @Column(name = "email")
     @NotEmpty(message = "Email address cannot be empty")
-    @Email(message = "Invalid email address")
+    @Email(message = "Invalid email address") //regex
     private String email;
 
     @Column(name = "age")

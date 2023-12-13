@@ -6,8 +6,6 @@
         color: red;
     }
 
-
-
 </style>
 
 <head>
@@ -24,7 +22,8 @@
     <hr>
     <h2>Save Employee</h2>
 
-    <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST">
+    <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST"
+          style="margin-bottom: 30px;">
 
         <h6>First name*:</h6>
         <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}"></p>
@@ -40,30 +39,23 @@
 
         <h6>Age*:</h6>
         <p th:if="${#fields.hasErrors('age')}" th:errorclass="error" th:errors="*{age}"></p>
-        <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
+        <input type="number" th:test="${employee.age} != null ? ${employee.age} : 0" class="form-control mb-4 col-4">
 
         <h6>Department*:</h6>
-        <select name="department.id">
+        <select name="department.id" style="margin-bottom: 30px;">
             <option th:value="${1L}" th:text="${'Information Technology'}"></option>
             <option th:value="${2L}" th:text="${'Human Resources'}"></option>
             <option th:value="${3L}" th:text="${'Financial Service'}"></option>
         </select>
-        <hr>
+
 
         <h6>Salary*:</h6>
         <p th:if="${#fields.hasErrors('salary')}" th:errorclass="error" th:errors="*{salary}"></p>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
-<!--        <div th:if="${#fields.hasAnyErrors()}" class="text-danger">-->
-<!--            <ul>-->
-<!--                <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-
         <button type="submit" class="btn btn-info col-2">Save Employee</button>
     </form>
 
-    <hr>
 
     <a th:href="@{/employee}" class="btn btn-info btn-md mb-3"> Back to Employee List</a>
 

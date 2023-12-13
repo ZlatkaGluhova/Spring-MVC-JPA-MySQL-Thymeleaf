@@ -14,53 +14,52 @@
     <hr>
     <h2>Update Employee</h2>
 
-    <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST">
+    <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="POST"
+          style="margin-bottom: 30px;">
 
         <input type="hidden" th:field="*{id}"/>
+
         <h6>First name:</h6>
+        <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}"></p>
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
+
         <h6>Last name:</h6>
+        <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}"></p>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
+
         <h6>Email:</h6>
+        <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></p>
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+
         <h6>Age:</h6>
+        <p th:if="${#fields.hasErrors('age')}" th:errorclass="error" th:errors="*{age}"></p>
         <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
+
         <h6>Department:</h6>
-<!--        <select name="department.departmentName">-->
-<!--            <option th:each="id : ${employee.department.getDepartmentName().getDepartmentValues()}"-->
-<!--                    th:selected="${id == employee.department.id}" th:value="${id}"-->
-<!--                    th:text="${name.getName()}"></option>-->
-<!--        </select>-->
 
-<!--        <select name="department.id">-->
-<!--            <option th:value="${1L}" th:text="${'Information Technology'}"></option>-->
-<!--            <option th:value="${2L}" th:text="${'Human Resources'}"></option>-->
-<!--            <option th:value="${3L}" th:text="${'Financial Service'}"></option>-->
-<!--        </select>-->
-
-        <select name="department.departmentName">
+        <select name="department.departmentName" style="margin-bottom: 30px;">
             <option th:each="name : ${employee.department.getDepartmentName().getDepartmentValues()}"
                     th:selected="${name == employee.department.getDepartmentName()}" th:value="${name}"
                     th:text="${name.getName()}"></option>
         </select>
 
 
-        <hr>
         <h6>Salary:</h6>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
         <h6>Change status:</h6>
 
-        <select name="status">
+        <select name="status" style="margin-bottom: 30px;">
             <option th:value="${employee.status}" th:text="${employee.status}"></option>
             <option th:value="${'ACTIVE'}" th:text="${'ACTIVE'}"></option>
             <option th:value="${'INACTIVE'}" th:text="${'INACTIVE'}"></option>
         </select>
-        <hr>
+
+        <hr/>
+
         <button type="submit" class="btn btn-info col-2">Update Employee</button>
     </form>
 
-    <hr>
     <a th:href="@{/employee}" class="btn btn-info col-2"> Back to Employee List</a>
 
 </div>
