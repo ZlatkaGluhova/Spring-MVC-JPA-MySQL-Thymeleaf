@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<style>
+    .error {
+        color: red;
+    }
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Employee Management System</title>
@@ -14,29 +22,32 @@
     <hr>
     <h2>Save Employer</h2>
 
-    <form action="#" th:action="@{/employer/saveEmployer}" th:object="${employer}" method="POST">
-        <h6>First name:</h6>
+    <form action="#" th:action="@{/employer/saveEmployer}" th:object="${employer}" method="POST"
+          style="margin-bottom: 30px;">
+
+        <h6>First name*:</h6>
+        <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}"></p>
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
-        <h6>Last name:</h6>
+
+        <h6>Last name*:</h6>
+        <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}"></p>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
-        <h6>Country:</h6>
-        <select name="country">
+
+        <h6>Country*:</h6>
+        <select name="country" style="margin-bottom: 30px;">
             <option th:value="${'BULGARIA'}" th:text="${'Bulgaria'}"></option>
             <option th:value="${'FRANCE'}" th:text="${'France'}"></option>
             <option th:value="${'ITALY'}" th:text="${'Italy'}"></option>
         </select>
 
-        <hr>
-
-        <h6>Salary:</h6>
+        <h6>Salary*:</h6>
+        <p th:if="${#fields.hasErrors('salary')}" th:errorclass="error" th:errors="*{salary}"></p>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
         <!--        <h6>Department:</h6>-->
         <!--        <input type="text" th:field="*{department}" placeholder="Department" class="form-control mb-4 col-4">-->
 
         <button type="submit" class="btn btn-info col-2">Save Employer</button>
     </form>
-
-    <hr>
 
     <a th:href="@{/employer}" class="btn btn-info btn-md mb-3"> Back to Employer List</a>
 
