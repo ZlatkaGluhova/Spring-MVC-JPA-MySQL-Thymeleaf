@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Validated
@@ -57,6 +58,9 @@ public class EmployeeController {
     public String saveEmployee(@ModelAttribute("employee") @Validated Employee employee, Errors errors) {
 
         if (errors.hasErrors()) {
+            if (employee.getId() != null) {
+                return ConstantType.EMPLOYEE.getUpdateType();
+            }
 
             return ConstantType.EMPLOYEE.getNewType();
         }

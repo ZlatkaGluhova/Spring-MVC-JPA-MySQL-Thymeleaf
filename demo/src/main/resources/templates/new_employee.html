@@ -5,7 +5,6 @@
     .error {
         color: red;
     }
-
 </style>
 
 <head>
@@ -39,7 +38,9 @@
 
         <h6>Age*:</h6>
         <p th:if="${#fields.hasErrors('age')}" th:errorclass="error" th:errors="*{age}"></p>
-        <input type="number" th:test="${employee.age} != null ? ${employee.age} : 0" class="form-control mb-4 col-4">
+<!--        <input type="number" th:field="*{age}"  class="form-control mb-4 col-4">-->
+        <input type="number" th:name="age"
+               th:value="${#strings.isEmpty('age')} ? ${#numbers.formatInteger('age',3)} : 5" class="form-control mb-4 col-4">
 
         <h6>Department*:</h6>
         <select name="department.id" style="margin-bottom: 30px;">

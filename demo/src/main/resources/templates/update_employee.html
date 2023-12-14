@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Employee Management System</title>
@@ -33,7 +40,7 @@
 
         <h6>Age:</h6>
         <p th:if="${#fields.hasErrors('age')}" th:errorclass="error" th:errors="*{age}"></p>
-        <input type="text" th:field="*{age}" class="form-control mb-4 col-4">
+        <input type="number" th:text="${employee.age} != null ? ${employee.age} : 0" class="form-control mb-4 col-4">
 
         <h6>Department:</h6>
 
@@ -48,7 +55,6 @@
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
         <h6>Change status:</h6>
-
         <select name="status" style="margin-bottom: 30px;">
             <option th:value="${employee.status}" th:text="${employee.status}"></option>
             <option th:value="${'ACTIVE'}" th:text="${'ACTIVE'}"></option>
