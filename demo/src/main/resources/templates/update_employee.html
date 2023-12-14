@@ -26,23 +26,23 @@
 
         <input type="hidden" th:field="*{id}"/>
 
-        <h6>First name:</h6>
+        <h6>First name*:</h6>
         <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}"></p>
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
 
-        <h6>Last name:</h6>
+        <h6>Last name*:</h6>
         <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}"></p>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
 
-        <h6>Email:</h6>
+        <h6>Email*:</h6>
         <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></p>
         <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
-        <h6>Age:</h6>
+        <h6>Age*:</h6>
         <p th:if="${#fields.hasErrors('age')}" th:errorclass="error" th:errors="*{age}"></p>
         <input type="number" th:text="${employee.age} != null ? ${employee.age} : 0" class="form-control mb-4 col-4">
 
-        <h6>Department:</h6>
+        <h6>Department*:</h6>
 
         <select name="department.departmentName" style="margin-bottom: 30px;">
             <option th:each="name : ${employee.department.getDepartmentName().getDepartmentValues()}"
@@ -51,7 +51,8 @@
         </select>
 
 
-        <h6>Salary:</h6>
+        <h6>Salary*:</h6>
+        <p th:if="${#fields.hasErrors('salary')}" th:errorclass="error" th:errors="*{salary}"></p>
         <input type="text" th:field="*{salary}" class="form-control mb-4 col-4">
 
         <h6>Change status:</h6>
