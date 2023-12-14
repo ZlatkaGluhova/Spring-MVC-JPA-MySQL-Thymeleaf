@@ -14,27 +14,28 @@
     <hr>
     <h2>Save Department</h2>
 
-    <form action="#" th:action="@{/department/saveDepartment}" th:object="${department}" method="POST">
+    <form action="#" th:action="@{/department/saveDepartment}" th:object="${department}" method="POST"
+          style="margin-bottom: 30px;">
+
         <h6>Name:</h6>
-        <select name="departmentName">
+        <select name="departmentName" style="margin-bottom: 30px;">
             <option th:value="${'IT'}" th:text="${'Information Technology'}"></option>
             <option th:value="${'FINANCE'}" th:text="${'Financial Service'}"></option>
             <option th:value="${'HR'}" th:text="${'Human Resources'}"></option>
         </select>
 
-        <hr>
         <!--        <h6>Employer:</h6>-->
         <!--        <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control mb-4 col-4">-->
-        <h6>Number of employees:</h6>
-        <input type="text" th:field="*{numberOfEmployees}" class="form-control mb-4 col-4">
 
-        <h6> Optional home office: <input type="checkbox" name="optionalHomeOffice" th:checked="*{optionalHomeOffice}">
+<!--        <h6>Number of employees:</h6>-->
+<!--        <input type="text" th:field="*{numberOfEmployees}" class="form-control mb-4 col-4">-->
+
+        <h6> Optional home office: <input type="checkbox" name="optionalHomeOffice" th:checked="*{optionalHomeOffice}"
+                                          style="margin-bottom: 30px;">
         </h6>
-        <hr>
+
         <button type="submit" class="btn btn-info col-2">Save Department</button>
     </form>
-
-    <hr>
 
     <a th:href="@{/department}" class="btn btn-info btn-md mb-3"> Back to Department List</a>
 
