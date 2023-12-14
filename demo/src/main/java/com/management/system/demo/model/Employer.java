@@ -1,10 +1,11 @@
 package com.management.system.demo.model;
 
 import com.management.system.demo.enums.Country;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,22 +21,23 @@ public class Employer {
     private Long id;
 
     @Column(name = "first_name")
-    @NotNull
-    @Size(min = 2, max = 50)
+    @NotBlank(message = "First name cannot be empty")
+    @Size(min = 2, max = 50, message = "Size for First Name must be between 2 and 50 symbols")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotNull
-    @Size(min = 2, max = 50)
+    @NotBlank(message = "Last name cannot be empty")
+    @Size(min = 2, max = 50, message = "Size for Last Name must be between 2 and 50 symbols")
     private String lastName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "country")
-    @NotNull
+    @NotNull(message = "Country cannot be empty")
     private Country country;
 
     @Column(name = "salary")
-    @NotNull
+    @NotNull(message = "Salary cannot be empty")
+    @DecimalMin(value = "0.1", message = "Salary must be more than 0")
     private BigDecimal salary;
 
     //dep

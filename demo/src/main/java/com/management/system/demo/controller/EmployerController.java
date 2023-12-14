@@ -8,10 +8,13 @@ import com.management.system.demo.service.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @Controller
 @RequestMapping("/employer")
 public class EmployerController {
@@ -37,8 +40,17 @@ public class EmployerController {
     }
 
     @PostMapping("/saveEmployer")
-    public String saveEmployer(@ModelAttribute("employer") Employer employer) {
+    public String saveEmployer(@ModelAttribute("employer") @Validated Employer employer, Errors errors) {
         //save employee to db
+
+        if (errors.hasErrors()) {
+            if (employer.getId() != null) {
+                return ConstantType.EMPLOYER.getUpdateType();
+            }
+
+            return ConstantType.EMPLOYER.getNewType();
+        }
+
         employerService.saveEmployer(employer);
 
         return ConstantType.EMPLOYER.getRedirectType();
