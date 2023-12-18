@@ -1,13 +1,14 @@
 package com.management.system.demo.enums;
 
-public enum RoleType {
-    ADMIN("Admin"),
-    USER("User");
+public enum TaskStatus {
+    TODO("TODO"),
+    IN_PROGRESS("In Progress"),
+    DONE("Done");
 
 
     private String name;
 
-    RoleType(String name) {
+    TaskStatus(String name) {
         this.name = name;
     }
 
