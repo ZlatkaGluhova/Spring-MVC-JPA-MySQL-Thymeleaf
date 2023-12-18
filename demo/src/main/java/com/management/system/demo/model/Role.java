@@ -3,19 +3,26 @@ package com.management.system.demo.model;
 
 import com.management.system.demo.enums.RoleType;
 
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Role {
     //id
     //type
     //description
     //list of users
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
     private RoleType type;
+
     private String description;
-    @ManyToMany
+
+    @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
     public Role() {

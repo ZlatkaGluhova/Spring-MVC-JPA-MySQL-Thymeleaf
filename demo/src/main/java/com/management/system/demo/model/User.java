@@ -1,21 +1,34 @@
 package com.management.system.demo.model;
 
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 public class User {
     //id
     //name
     //password
     //list of roles
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String userName;
+
     private String password;
+
     private LocalDateTime createdOn;
+
     private LocalDateTime updatedOn;
+
     @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private List<Role> roles;
 
     public User() {

@@ -52,7 +52,7 @@ public class DemoApplication {
     }
 
     private void createEmployer() {
-        employerService.saveEmployer(new Employer("Vasil", "Sokolov", Country.BULGARIA, BigDecimal.valueOf(15000), departmentService.getDepartmentById(1L), LocalDateTime.now()));
+        employerService.saveEmployer(new Employer("Vasil", "Vasilev", Country.BULGARIA, BigDecimal.valueOf(15000), departmentService.getDepartmentById(1L), LocalDateTime.now()));
         employerService.saveEmployer(new Employer("Ivan", "Ivanov", Country.BULGARIA, BigDecimal.valueOf(9000), departmentService.getDepartmentById(2L), LocalDateTime.now()));
         employerService.saveEmployer(new Employer("Dimo", "Dimov", Country.BULGARIA, BigDecimal.valueOf(10000), departmentService.getDepartmentById(3L), LocalDateTime.now()));
     }
