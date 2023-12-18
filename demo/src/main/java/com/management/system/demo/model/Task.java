@@ -3,15 +3,34 @@ package com.management.system.demo.model;
 import com.management.system.demo.enums.TaskStatus;
 import com.management.system.demo.enums.TaskType;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "task")
 public class Task {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private TaskType type;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private TaskStatus status;
+
+    @Column(name = "created_on")
     private LocalDateTime createdOn;
+
+    @Column(name = "updated_on")
     private LocalDateTime updatedOn;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     public Task() {
     }
@@ -56,6 +75,14 @@ public class Task {
         this.updatedOn = updatedOn;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -64,6 +91,7 @@ public class Task {
                 ", status=" + status +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
+                ", employee=" + employee +
                 '}';
     }
 }
