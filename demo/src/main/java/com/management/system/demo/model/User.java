@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
     //id
     //name
@@ -15,12 +16,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userName;
+    @Column(name = "username")
+    private String username;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "created_on")
     private LocalDateTime createdOn;
 
+    @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
     @ManyToMany
@@ -34,6 +39,12 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, LocalDateTime createdOn) {
+        this.username = username;
+        this.password = password;
+        this.createdOn = createdOn;
+    }
+
     public Long getId() {
         return id;
     }
@@ -42,12 +53,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -86,7 +97,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
