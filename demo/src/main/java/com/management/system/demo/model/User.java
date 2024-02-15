@@ -1,5 +1,7 @@
 package com.management.system.demo.model;
 
+import com.management.system.demo.dto.request.UserUpdateDTORequest;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,6 +45,24 @@ public class User {
         this.username = username;
         this.password = password;
         this.createdOn = createdOn;
+    }
+
+    public User(UserUpdateDTORequest userUpdateDTORequest) {
+//        this.setId(userUpdateDTORequest.getId());
+//        this.setUsername(userUpdateDTORequest.getUsername());
+//        this.setPassword(userUpdateDTORequest.getPassword());
+////        userFromDB.setCreatedOn(userUpdateDTORequest.getCreatedOn());
+//        this.setUpdatedOn(LocalDateTime.now());
+//        this.setRoles(userUpdateDTORequest.getRoles());
+    }
+
+    public User(User userFromDB, UserUpdateDTORequest userUpdateDTORequest) {
+        this.setId(userUpdateDTORequest.getId() != null ? userFromDB.getId() : userUpdateDTORequest.getId());
+        this.setUsername(userUpdateDTORequest.getUsername());
+        this.setPassword(userUpdateDTORequest.getPassword());
+        this.setCreatedOn(userFromDB.getCreatedOn());
+        this.setUpdatedOn(LocalDateTime.now());
+        this.setRoles(userUpdateDTORequest.getRoles());
     }
 
     public Long getId() {
