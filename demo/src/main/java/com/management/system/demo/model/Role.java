@@ -1,12 +1,14 @@
 package com.management.system.demo.model;
 
 
+import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.enums.RoleType;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "roles")
 public class Role {
     //id
     //type
@@ -18,14 +20,23 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private RoleType type;
 
+    @Column(name = "description")
     private String description;
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
     public Role() {
+    }
+
+    public Role(Role roleFromDB, RoleUpdateDTORequest roleUpdateDTORequest) {
+        this.setId(roleUpdateDTORequest.getId() != null ? roleFromDB.getId() : roleUpdateDTORequest.getId());
+        this.setType(roleUpdateDTORequest.getType());
+        this.setDescription(roleUpdateDTORequest.getDescription());
+        this.setUsers(roleUpdateDTORequest.getUsers());
     }
 
     public Long getId() {

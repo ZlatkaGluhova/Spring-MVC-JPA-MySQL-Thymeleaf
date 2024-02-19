@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
         User user = mappedDataFromUserCreateDTORequestToUserDB(userCreateDTORequest);
         User userDB = userRepository.save(user);
         UserCreateDTOResponse userCreateDTOResponse = mappedDataFromUserDBToUserCreateDTOResponse(userDB);
+
         return userCreateDTOResponse;
     }
 

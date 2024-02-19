@@ -1,2 +1,7 @@
-package com.management.system.demo.repository;public interface RoleRepository {
+package com.management.system.demo.repository;
+
+import com.management.system.demo.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }
