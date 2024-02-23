@@ -6,6 +6,7 @@ import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.enums.RoleType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,8 +27,8 @@ public class Role {
     private String description;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 
     public Role() {
     }
@@ -76,8 +77,7 @@ public class Role {
         this.users = users;
     }
 
-    @Override
-    public String toString() {
+    public String toStringR() {
         return "Role{" +
                 "id=" + id +
                 ", type=" + type +
