@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserCreateDTOResponse saveUser(UserCreateDTORequest userCreateDTORequest) {
         User user = mappedDataFromUserCreateDTORequestToUserDB(userCreateDTORequest);
-//        userRepository.save(user);
         List<Role> rolesFromDB = mappedRoles(userCreateDTORequest);
         user.setRoles(rolesFromDB);
 
@@ -77,7 +76,6 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsersWithRoles(List<Role> roles) {
 
         return userRepository.findByRolesIn(roles);
-//        return null;
     }
 
 
@@ -115,5 +113,4 @@ public class UserServiceImpl implements UserService {
         
         return rolesFromDB;
     }
-
 }
