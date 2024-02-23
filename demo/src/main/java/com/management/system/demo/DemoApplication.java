@@ -3,11 +3,9 @@ package com.management.system.demo;
 import com.management.system.demo.dto.request.UserCreateDTORequest;
 import com.management.system.demo.enums.Country;
 import com.management.system.demo.enums.DepartmentName;
+import com.management.system.demo.enums.RoleType;
 import com.management.system.demo.enums.Status;
-import com.management.system.demo.model.Department;
-import com.management.system.demo.model.Employee;
-import com.management.system.demo.model.Employer;
-import com.management.system.demo.model.User;
+import com.management.system.demo.model.*;
 import com.management.system.demo.service.DepartmentService;
 import com.management.system.demo.service.EmployeeService;
 import com.management.system.demo.service.EmployerService;
@@ -20,6 +18,9 @@ import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -83,9 +84,17 @@ public class DemoApplication {
     }
 
     private void createUsers() {
-        userService.saveUser(new UserCreateDTORequest("vasil_vasilev", "Vasko358*"));
-        userService.saveUser(new UserCreateDTORequest("ivan_ivanov", "Ivan358*"));
-        userService.saveUser(new UserCreateDTORequest("dimo_dimov", "Dimo358*"));
+            userService.saveUser(new UserCreateDTORequest("vasil_vasilev", "Vasko358*"));
+            userService.saveUser(new UserCreateDTORequest("ivan_ivanov", "Ivan358*"));
+            userService.saveUser(new UserCreateDTORequest("dimo_dimov", "Dimo358*"));
+
     }
+//
+//    private List<Role> createRoles() {
+//        List<Role> rolesList = new ArrayList<>();
+//
+//
+//        return rolesList;
+//    }
 
 }

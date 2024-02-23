@@ -5,6 +5,7 @@ import com.management.system.demo.model.Role;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class UserUpdateDTORequest {
 
@@ -18,11 +19,12 @@ public class UserUpdateDTORequest {
     }
 
 
-    public UserUpdateDTORequest(Long id, String username, String password, LocalDateTime createdOn) {
+    public UserUpdateDTORequest(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.createdOn = createdOn;
+        this.roles = roles;
     }
 
     public Long getId() {

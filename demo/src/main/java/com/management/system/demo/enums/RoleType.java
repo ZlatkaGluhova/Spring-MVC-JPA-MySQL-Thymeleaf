@@ -2,7 +2,8 @@ package com.management.system.demo.enums;
 
 public enum RoleType {
     ADMIN("Admin"),
-    USER("User");
+    USER("User"),
+    GUEST("Guest");
 
 
     private String name;

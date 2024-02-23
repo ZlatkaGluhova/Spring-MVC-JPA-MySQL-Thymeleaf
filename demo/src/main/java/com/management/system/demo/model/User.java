@@ -4,15 +4,13 @@ import com.management.system.demo.dto.request.UserUpdateDTORequest;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
-    //id
-    //name
-    //password
-    //list of roles
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,19 +39,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, LocalDateTime createdOn) {
+    public User(String username, String password, LocalDateTime createdOn, List<Role> roles) {
         this.username = username;
         this.password = password;
         this.createdOn = createdOn;
-    }
-
-    public User(UserUpdateDTORequest userUpdateDTORequest) {
-//        this.setId(userUpdateDTORequest.getId());
-//        this.setUsername(userUpdateDTORequest.getUsername());
-//        this.setPassword(userUpdateDTORequest.getPassword());
-////        userFromDB.setCreatedOn(userUpdateDTORequest.getCreatedOn());
-//        this.setUpdatedOn(LocalDateTime.now());
-//        this.setRoles(userUpdateDTORequest.getRoles());
+        this.roles = roles;
     }
 
     public User(User userFromDB, UserUpdateDTORequest userUpdateDTORequest) {

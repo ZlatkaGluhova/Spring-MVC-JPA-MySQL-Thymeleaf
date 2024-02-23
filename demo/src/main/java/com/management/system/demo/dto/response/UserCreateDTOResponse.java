@@ -1,9 +1,12 @@
 package com.management.system.demo.dto.response;
 
 import com.management.system.demo.dto.request.UserCreateDTORequest;
+import com.management.system.demo.model.Role;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class UserCreateDTOResponse extends UserCreateDTORequest {
 
@@ -13,8 +16,8 @@ public class UserCreateDTOResponse extends UserCreateDTORequest {
     public UserCreateDTOResponse() {
     }
 
-    public UserCreateDTOResponse(String username, String password, Long id, LocalDateTime createdOn) {
-        super(username, password);
+    public UserCreateDTOResponse(String username, String password, List<Role> roles, Long id, LocalDateTime createdOn) {
+        super(username, password, roles);
         this.id = id;
         this.createdOn = createdOn;
     }

@@ -1,10 +1,13 @@
 package com.management.system.demo.dto.response;
 
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
+import com.management.system.demo.model.Role;
 import com.management.system.demo.model.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class UserUpdateDTOResponse extends UserUpdateDTORequest {
 
@@ -13,8 +16,8 @@ public class UserUpdateDTOResponse extends UserUpdateDTORequest {
     public UserUpdateDTOResponse() {
     }
 
-    public UserUpdateDTOResponse(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn) {
-        super(id, username, password, createdOn);
+    public UserUpdateDTOResponse(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
+        super(id, username, password, createdOn, roles);
         this.updatedOn = updatedOn;
     }
 

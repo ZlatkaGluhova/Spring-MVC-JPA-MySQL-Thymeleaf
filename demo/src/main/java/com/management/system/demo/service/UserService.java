@@ -4,6 +4,7 @@ import com.management.system.demo.dto.request.UserCreateDTORequest;
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
 import com.management.system.demo.dto.response.UserCreateDTOResponse;
 import com.management.system.demo.dto.response.UserUpdateDTOResponse;
+import com.management.system.demo.model.Role;
 import com.management.system.demo.model.User;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface UserService {
     UserUpdateDTOResponse updateUser(Long id, UserUpdateDTORequest userUpdateDTORequest);
 
     void deleteUser(Long id);
+
+    List<User> getAllUsersWithRoles(List<Role> roles);
+
 }
