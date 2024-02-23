@@ -103,8 +103,7 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
+    public String toStringU() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
