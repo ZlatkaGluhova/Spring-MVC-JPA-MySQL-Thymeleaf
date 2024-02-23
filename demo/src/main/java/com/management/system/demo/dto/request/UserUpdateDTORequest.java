@@ -12,6 +12,9 @@ public class UserUpdateDTORequest {
     protected Long id;
     protected String username;
     protected String password;
+    protected String email;
+    protected int age;
+    protected boolean isActive = true;
     protected LocalDateTime createdOn;
     protected List<Role> roles;
 
@@ -23,6 +26,17 @@ public class UserUpdateDTORequest {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.createdOn = createdOn;
+        this.roles = roles;
+    }
+
+    public UserUpdateDTORequest(Long id, String username, String password, String email, int age, boolean isActive, LocalDateTime createdOn, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.isActive = isActive;
         this.createdOn = createdOn;
         this.roles = roles;
     }
@@ -49,6 +63,30 @@ public class UserUpdateDTORequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public LocalDateTime getCreatedOn() {

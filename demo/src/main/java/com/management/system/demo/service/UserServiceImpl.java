@@ -84,6 +84,9 @@ public class UserServiceImpl implements UserService {
         userCreateDTOResponse.setId(user.getId());
         userCreateDTOResponse.setUsername(user.getUsername());
         userCreateDTOResponse.setPassword(user.getPassword());
+        userCreateDTOResponse.setEmail(user.getEmail());
+        userCreateDTOResponse.setAge(user.getAge());
+        userCreateDTOResponse.setActive(user.isActive());
         userCreateDTOResponse.setCreatedOn(user.getCreatedOn());
         userCreateDTOResponse.setRoles(user.getRoles());
 
@@ -94,6 +97,8 @@ public class UserServiceImpl implements UserService {
         User userFromDB = new User();
         userFromDB.setUsername(userCreateDTORequest.getUsername());
         userFromDB.setPassword(userCreateDTORequest.getPassword());
+        userFromDB.setEmail(userCreateDTORequest.getEmail());
+        userFromDB.setAge(userCreateDTORequest.getAge());
         userFromDB.setCreatedOn(LocalDateTime.now());
 
         return userFromDB;
