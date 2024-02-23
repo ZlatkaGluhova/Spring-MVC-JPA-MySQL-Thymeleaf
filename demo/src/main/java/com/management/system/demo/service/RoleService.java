@@ -3,6 +3,7 @@ package com.management.system.demo.service;
 import com.management.system.demo.dto.request.RoleCreateDTORequest;
 import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.dto.response.RoleCreateDTOResponse;
+import com.management.system.demo.dto.response.RoleGetDTOResponse;
 import com.management.system.demo.dto.response.RoleUpdateDTOResponse;
 import com.management.system.demo.model.Role;
 
@@ -14,6 +15,8 @@ public interface RoleService {
     RoleCreateDTOResponse saveRole(RoleCreateDTORequest roleCreateDTORequest);
 
     Role getRoleById(Long id);
+
+    RoleGetDTOResponse getRoleByIdWithUsers(Long id);
 
     RoleUpdateDTOResponse updateRole(Long id, RoleUpdateDTORequest roleUpdateDTORequest);
 

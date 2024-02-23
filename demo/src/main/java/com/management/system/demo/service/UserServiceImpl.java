@@ -5,19 +5,27 @@ import com.management.system.demo.dto.request.UserUpdateDTORequest;
 import com.management.system.demo.dto.response.UserCreateDTOResponse;
 import com.management.system.demo.dto.response.UserUpdateDTOResponse;
 import com.management.system.demo.exception.UserNotFoundException;
+import com.management.system.demo.model.Role;
 import com.management.system.demo.model.User;
 import com.management.system.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    @Lazy
     private UserRepository userRepository;
+
+    @Autowired
+    @Lazy
+    private RoleService roleService;
 
     @Override
     public List<User> getAllUsers() {
@@ -26,8 +34,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserCreateDTOResponse saveUser(UserCreateDTORequest userCreateDTORequest) {
-
         User user = mappedDataFromUserCreateDTORequestToUserDB(userCreateDTORequest);
+        List<Role> rolesFromDB = mappedRoles(userCreateDTORequest);
+        user.setRoles(rolesFromDB);
+
         User userDB = userRepository.save(user);
         UserCreateDTOResponse userCreateDTOResponse = mappedDataFromUserDBToUserCreateDTOResponse(userDB);
 
@@ -62,6 +72,12 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
     }
 
+    @Override
+    public List<User> getAllUsersWithRoles(List<Role> roles) {
+
+        return userRepository.findByRolesIn(roles);
+    }
+
 
     private UserCreateDTOResponse mappedDataFromUserDBToUserCreateDTOResponse(User user) {
         UserCreateDTOResponse userCreateDTOResponse = new UserCreateDTOResponse();
@@ -79,8 +95,22 @@ public class UserServiceImpl implements UserService {
         userFromDB.setUsername(userCreateDTORequest.getUsername());
         userFromDB.setPassword(userCreateDTORequest.getPassword());
         userFromDB.setCreatedOn(LocalDateTime.now());
-        userFromDB.setRoles(userCreateDTORequest.getRoles());
 
         return userFromDB;
+    }
+    
+    public List<Role> mappedRoles(UserCreateDTORequest userCreateDTORequest){
+        List<Role> rolesFromDB = new ArrayList<>();
+
+        if (userCreateDTORequest.getRoles() != null) {
+            List<Role> rolesRequest = userCreateDTORequest.getRoles();
+
+            for (Role role : rolesRequest) {
+                Role roleFromDB = roleService.getRoleById(role.getId());
+                rolesFromDB.add(roleFromDB);
+            }
+        } 
+        
+        return rolesFromDB;
     }
 }

@@ -3,6 +3,7 @@ package com.management.system.demo.controller;
 import com.management.system.demo.dto.request.RoleCreateDTORequest;
 import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.dto.response.RoleCreateDTOResponse;
+import com.management.system.demo.dto.response.RoleGetDTOResponse;
 import com.management.system.demo.dto.response.RoleUpdateDTOResponse;
 import com.management.system.demo.model.Role;
 import com.management.system.demo.service.RoleService;
@@ -54,6 +55,13 @@ public class RoleController {
         roleService.deleteRole(id);
 
         return ResponseEntity.ok("The Role with id: " + id + " is deleted successfully");
+    }
+
+    @GetMapping("/{id}/users")
+    public ResponseEntity<RoleGetDTOResponse> getRoleByIdWithUsers(@PathVariable Long id) {
+        RoleGetDTOResponse role = roleService.getRoleByIdWithUsers(id);
+
+        return ResponseEntity.ok(role);
     }
 
 }

@@ -1,6 +1,5 @@
 package com.management.system.demo.controller;
 
-
 import com.management.system.demo.dto.request.UserCreateDTORequest;
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
 import com.management.system.demo.dto.response.UserCreateDTOResponse;
@@ -8,7 +7,6 @@ import com.management.system.demo.dto.response.UserUpdateDTOResponse;
 import com.management.system.demo.model.User;
 import com.management.system.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

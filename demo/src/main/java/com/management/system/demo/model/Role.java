@@ -1,19 +1,18 @@
 package com.management.system.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.enums.RoleType;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class Role {
-    //id
-    //type
-    //description
-    //list of users
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +25,16 @@ public class Role {
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
     public Role() {
+    }
+
+    public Role(RoleType type, String description) {
+        this.type = type;
+        this.description = description;
     }
 
     public Role(Role roleFromDB, RoleUpdateDTORequest roleUpdateDTORequest) {

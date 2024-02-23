@@ -4,6 +4,7 @@ import com.management.system.demo.model.Role;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class UserCreateDTORequest {
 
@@ -17,6 +18,12 @@ public class UserCreateDTORequest {
     public UserCreateDTORequest(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public UserCreateDTORequest(String username, String password, List<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
     }
 
     public String getUsername() {
