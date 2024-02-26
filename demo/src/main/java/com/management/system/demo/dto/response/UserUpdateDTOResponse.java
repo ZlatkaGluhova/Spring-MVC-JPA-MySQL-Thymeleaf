@@ -21,14 +21,24 @@ public class UserUpdateDTOResponse extends UserUpdateDTORequest {
         this.updatedOn = updatedOn;
     }
 
+    public UserUpdateDTOResponse(Long id, String username, String password, String email, int age, boolean isActive, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
+        super(id, username, password, email, age, isActive, createdOn, roles);
+        this.updatedOn = updatedOn;
+    }
+
     public UserUpdateDTOResponse(User updateUserDB) {
         this.id = updateUserDB.getId(); // 1. nai-dobre
         username = updateUserDB.getUsername(); // 2.
         this.setPassword(updateUserDB.getPassword()); // 3.
+        this.email = updateUserDB.getEmail();
+        this.age = updateUserDB.getAge();
+        this.isActive = updateUserDB.isActive();
         this.setCreatedOn(updateUserDB.getCreatedOn());
         this.setUpdatedOn(updateUserDB.getUpdatedOn());
         setRoles(updateUserDB.getRoles()); // 4.
     }
+
+
 
     public LocalDateTime getUpdatedOn() {
         return updatedOn;

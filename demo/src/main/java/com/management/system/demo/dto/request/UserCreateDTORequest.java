@@ -5,6 +5,7 @@ import com.management.system.demo.model.Role;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.persistence.Column;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,16 +24,28 @@ public class UserCreateDTORequest {
     @Pattern(regexp="^(?=.*[0-9])(?=.*[A-Z])$")
 //    @ValidPassword
     private String password;
-
-
+    private String email;
+    private int age;
+    private boolean isActive;
     private List<Role> roles;
 
     public UserCreateDTORequest() {
     }
 
-    public UserCreateDTORequest(String username, String password) {
+    public UserCreateDTORequest(String username, String password, String email, int age) {
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.age = age;
+    }
+
+    public UserCreateDTORequest(String username, String password, String email, int age, boolean isActive, List<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.isActive = isActive;
+        this.roles = roles;
     }
 
     public UserCreateDTORequest(String username, String password, List<Role> roles) {
@@ -57,6 +70,30 @@ public class UserCreateDTORequest {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -70,8 +107,11 @@ public class UserCreateDTORequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserCreateDTORequest that = (UserCreateDTORequest) o;
-        return Objects.equals(username, that.username) &&
+        return age == that.age &&
+                isActive == that.isActive &&
+                Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password) &&
+                Objects.equals(email, that.email) &&
                 Objects.equals(roles, that.roles);
     }
 
@@ -85,6 +125,9 @@ public class UserCreateDTORequest {
         return "UserCreateDTORequest{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", isActive=" + isActive +
                 ", roles=" + roles +
                 '}';
     }

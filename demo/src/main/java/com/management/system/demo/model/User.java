@@ -26,6 +26,15 @@ public class User {
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "isActive")
+    private boolean isActive = true;
+
     @ManyToMany
     @JoinTable(
             name = "user_role",
@@ -44,10 +53,25 @@ public class User {
         this.roles = roles;
     }
 
+    public User(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn, String email, int age, boolean isActive, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.email = email;
+        this.age = age;
+        this.isActive = isActive;
+        this.roles = roles;
+    }
+
     public User(User userFromDB, UserUpdateDTORequest userUpdateDTORequest) {
         this.setId(userUpdateDTORequest.getId() != null ? userFromDB.getId() : userUpdateDTORequest.getId());
         this.setUsername(userUpdateDTORequest.getUsername());
         this.setPassword(userUpdateDTORequest.getPassword());
+        this.setEmail(userUpdateDTORequest.getEmail());
+        this.setAge(userUpdateDTORequest.getAge());
+        this.setActive(userUpdateDTORequest.isActive());
         this.setCreatedOn(userFromDB.getCreatedOn());
         this.setUpdatedOn(LocalDateTime.now());
         this.setRoles(userUpdateDTORequest.getRoles());
@@ -93,6 +117,30 @@ public class User {
         this.updatedOn = updatedOn;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -108,6 +156,9 @@ public class User {
                 ", password='" + password + '\'' +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", isActive=" + isActive +
                 ", roles=" + roles +
                 '}';
     }

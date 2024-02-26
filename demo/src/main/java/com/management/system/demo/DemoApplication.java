@@ -84,9 +84,9 @@ public class DemoApplication {
     }
 
     private void createUsers() {
-            userService.saveUser(new UserCreateDTORequest("vasil_vasilev", "Vasko358*"));
-            userService.saveUser(new UserCreateDTORequest("ivan_ivanov", "Ivan358*"));
-            userService.saveUser(new UserCreateDTORequest("dimo_dimov", "Dimo358*"));
+            userService.saveUser(new UserCreateDTORequest("vasil_vasilev", "Vasil358*", "vasil@abv.bg", 26));
+            userService.saveUser(new UserCreateDTORequest("ivan_ivanov", "Ivan358*", "ivan@abv.bg", 38));
+            userService.saveUser(new UserCreateDTORequest("dimo_dimov", "Dimo358*", "dimo@abv.bg", 32));
 
     }
 //
