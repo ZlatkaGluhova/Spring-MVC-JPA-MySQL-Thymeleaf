@@ -1,12 +1,12 @@
 package com.management.system.demo.model;
 
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
+import com.management.system.demo.service.validations.ValidPassword;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -17,9 +17,19 @@ public class User {
     private Long id;
 
     @Column(name = "username")
+    @NotNull
+    @Size(min = 3, max = 15)
+//    @Pattern(regexp = "^[a-zA-Z0-9]{3,15}$",
+//            message = "username must be of 6 to 12 length with no special characters")
     private String username;
 
     @Column(name = "password")
+    @NotNull
+    @Size(min = 8, max = 12)
+//    @Pattern(regexp = "^((?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])){8,12}$",
+//            message = "Password must contain atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
+//    @Pattern(regexp="^(?=.*[0-9])(?=.*[A-Z])$")
+    @ValidPassword
     private String password;
 
     @Column(name = "created_on")
