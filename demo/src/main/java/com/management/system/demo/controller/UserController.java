@@ -60,21 +60,4 @@ public class UserController {
         return ResponseEntity.ok("The User with id: " + id + " is deleted successfully");
     }
 
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Object>  handleValidationExceptions(
-//            MethodArgumentNotValidException ex) {
-//        Map<String, String> errors = new HashMap<>();
-////        ex.getBindingResult().getAllErrors()
-////        AtomicReference<ExceptionResponse> exceptionResponse = null;
-//        ex.getBindingResult().getAllErrors().forEach((error) -> {
-//            String fieldName = ((FieldError) error).getField();
-//            String errorMessage = error.getDefaultMessage();
-//            errors.put(fieldName, errorMessage);
-////            exceptionResponse.set(new ExceptionResponse(new Date(), fieldName, errorMessage));
-//        });
-//        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), errors.toString(), "");
-//
-//        return new ResponseEntity(errors, HttpStatus.NOT_FOUND);
-//    }
 }

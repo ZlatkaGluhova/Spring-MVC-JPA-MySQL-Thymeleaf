@@ -74,7 +74,6 @@ public class CustomizedResponseEntityExceptionHandler {
         error.put("message", errors);
         ObjectMapper objectMapper = new ObjectMapper();
         String prettyJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(error);
-//        String prettyJson = exceptionText(ex);
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_JSON).body(prettyJson);
     }

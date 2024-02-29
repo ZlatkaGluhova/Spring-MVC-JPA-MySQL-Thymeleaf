@@ -10,10 +10,7 @@ import java.time.Period;
 import java.util.List;
 import java.util.Objects;
 
-//@Validated
-//@JsonPropertyOrder({"username", "password", "email", "age", "birthDate", "isActive", "roles"})
 public class UserCreateDTORequest {
-
 
     @NotBlank(message = "Username not found!!!")
     @Size(min = 3, max = 15)
@@ -23,8 +20,8 @@ public class UserCreateDTORequest {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
     protected String password;
 
-    @NotNull
-    @Email(message = "Email is not valid!")
+    @Email(message = "Email is not valid", regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+    @NotEmpty(message = "Email cannot be empty")
     protected String email;
 
     protected Integer age;
