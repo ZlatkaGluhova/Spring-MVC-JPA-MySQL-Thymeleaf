@@ -20,7 +20,7 @@ public class UserCreateDTORequest {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")
     protected String password;
 
-    @Email(message = "Email is not valid", regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+    @Email(message = "Email is not valid", regexp = "^((?!\\.)[\\w\\-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$")
     @NotEmpty(message = "Email cannot be empty")
     protected String email;
 
