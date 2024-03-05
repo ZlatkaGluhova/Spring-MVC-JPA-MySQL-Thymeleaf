@@ -17,10 +17,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -52,6 +56,39 @@ public class DemoApplication {
 //
 //        };
 //    }
+
+    @Bean
+    InitializingBean Test() {
+        return () -> {
+        myTest();
+
+        };
+    }
+
+    private void myTest() {
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println("---------------------------------------------- START");
+        System.out.println(DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH).format(ldt));
+        System.out.println(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt));
+        System.out.println(ldt);
+        System.out.println("----------------------------");
+        LocalDate birthDate;
+        birthDate = LocalDate.now();
+        System.out.println(birthDate);
+
+
+        birthDate = LocalDate.of(1995, 4, 28);
+        System.out.println(birthDate);
+        LocalDate dateNow = LocalDate.now();
+        Integer test = Period.between(birthDate, dateNow).getYears();
+        System.out.printf("User is %d years old%n", test);
+
+
+        birthDate = LocalDate.parse("08-02-2020", DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        System.out.println(birthDate);
+        System.out.println("---------------------------------------------- END");
+    }
+
 
     private void createDepartments() {
         departmentService.saveDepartment(new Department(DepartmentName.IT, 0, true));

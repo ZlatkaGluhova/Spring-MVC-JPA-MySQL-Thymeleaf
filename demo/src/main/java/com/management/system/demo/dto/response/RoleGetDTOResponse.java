@@ -5,7 +5,6 @@ import com.management.system.demo.model.Role;
 import com.management.system.demo.model.User;
 
 import java.util.List;
-import java.util.Set;
 
 public class RoleGetDTOResponse extends RoleUpdateDTOResponse {
 

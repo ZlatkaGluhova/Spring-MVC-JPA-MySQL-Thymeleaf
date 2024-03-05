@@ -1,9 +1,12 @@
 package com.management.system.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -30,10 +33,13 @@ public class User {
     private String email;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
+
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     @Column(name = "isActive")
-    private boolean isActive = true;
+    private Boolean isActive = true;
 
     @ManyToMany
     @JoinTable(
@@ -53,7 +59,7 @@ public class User {
         this.roles = roles;
     }
 
-    public User(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn, String email, int age, boolean isActive, List<Role> roles) {
+    public User(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn, String email, Integer age, Boolean isActive, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -125,19 +131,28 @@ public class User {
         this.email = email;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public boolean isActive() {
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 

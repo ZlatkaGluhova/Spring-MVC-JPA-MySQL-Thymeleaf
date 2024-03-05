@@ -4,10 +4,8 @@ import com.management.system.demo.dto.request.RoleCreateDTORequest;
 import com.management.system.demo.enums.RoleType;
 import com.management.system.demo.model.User;
 
-import javax.mail.search.SearchTerm;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class RoleCreateDTOResponse extends RoleCreateDTORequest {
 

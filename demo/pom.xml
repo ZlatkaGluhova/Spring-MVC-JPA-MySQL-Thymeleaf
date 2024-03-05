@@ -90,13 +90,6 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.1.Final</version>
         </dependency>
-
-        <!--		&lt;!&ndash; support for "Java 8 Dates" &ndash;&gt;-->
-        <!--		<dependency>-->
-        <!--			<groupId>com.fasterxml.jackson.datatype</groupId>-->
-        <!--			<artifactId>jackson-datatype-jsr310</artifactId>-->
-        <!--			<version>${jackson.version}</version>-->
-        <!--		</dependency>-->
     </dependencies>
 
 
