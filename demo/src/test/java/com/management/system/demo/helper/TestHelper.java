@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.management.system.demo.dto.DepartmentDTO;
 import com.management.system.demo.dto.request.UserCreateDTORequest;
+import com.management.system.demo.dto.request.UserUpdateDTORequest;
 import com.management.system.demo.dto.response.UserCreateDTOResponse;
 import com.management.system.demo.enums.Country;
 import com.management.system.demo.enums.DepartmentName;
@@ -37,8 +38,30 @@ public class TestHelper {
         return employer;
     }
 
-    public static UserCreateDTORequest createUser() {
+    public static UserCreateDTORequest createUserDTOForUpdate() {
         UserCreateDTORequest user = new UserCreateDTORequest();
+        user.setUsername("vasi_853");
+        user.setPassword("Vasi853*");
+        user.setEmail("vasi@abv.bg");
+        user.setBirthDate(LocalDate.of(2000, 8,15));
+
+        return user;
+    }
+
+    public static UserUpdateDTORequest createUserDTOForUpdate(Long id) {
+        UserUpdateDTORequest user = new UserUpdateDTORequest();
+        user.setId(id);
+        user.setUsername("vasi_853");
+        user.setPassword("Vasi853*");
+        user.setEmail("vasi@abv.bg");
+        user.setBirthDate(LocalDate.of(2000, 8,15));
+
+        return user;
+    }
+
+    public static User createUser(Long id) {
+        User user = new User();
+        user.setId(id);
         user.setUsername("vasi_853");
         user.setPassword("Vasi853*");
         user.setEmail("vasi@abv.bg");
