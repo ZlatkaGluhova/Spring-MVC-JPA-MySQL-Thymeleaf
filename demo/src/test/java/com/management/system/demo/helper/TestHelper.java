@@ -3,14 +3,16 @@ package com.management.system.demo.helper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.management.system.demo.dto.DepartmentDTO;
+import com.management.system.demo.dto.request.UserCreateDTORequest;
+import com.management.system.demo.dto.request.UserUpdateDTORequest;
+import com.management.system.demo.dto.response.UserCreateDTOResponse;
 import com.management.system.demo.enums.Country;
 import com.management.system.demo.enums.DepartmentName;
 import com.management.system.demo.enums.Status;
-import com.management.system.demo.model.Department;
-import com.management.system.demo.model.Employee;
-import com.management.system.demo.model.Employer;
+import com.management.system.demo.model.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,40 @@ public class TestHelper {
     public static Employer createEmployer(Long id, LocalDateTime createdOn) {
         Employer employer = createEmployer(id);
         employer.setCreatedOn(createdOn);
+
         return employer;
+    }
+
+    public static UserCreateDTORequest createUserDTOForUpdate() {
+        UserCreateDTORequest user = new UserCreateDTORequest();
+        user.setUsername("vasi_853");
+        user.setPassword("Vasi853*");
+        user.setEmail("vasi@abv.bg");
+        user.setBirthDate(LocalDate.of(2000, 8,15));
+
+        return user;
+    }
+
+    public static UserUpdateDTORequest createUserDTOForUpdate(Long id) {
+        UserUpdateDTORequest user = new UserUpdateDTORequest();
+        user.setId(id);
+        user.setUsername("vasi_853");
+        user.setPassword("Vasi853*");
+        user.setEmail("vasi@abv.bg");
+        user.setBirthDate(LocalDate.of(2000, 8,15));
+
+        return user;
+    }
+
+    public static User createUser(Long id) {
+        User user = new User();
+        user.setId(id);
+        user.setUsername("vasi_853");
+        user.setPassword("Vasi853*");
+        user.setEmail("vasi@abv.bg");
+        user.setBirthDate(LocalDate.of(2000, 8,15));
+
+        return user;
     }
 
     public static String asJsonString(final Object obj) {
@@ -115,6 +150,7 @@ public class TestHelper {
 
         return departments;
     }
+
 
 
 }

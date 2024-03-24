@@ -13,6 +13,11 @@ public class UserCreateDTOResponse extends UserCreateDTORequest {
     public UserCreateDTOResponse() {
     }
 
+    public UserCreateDTOResponse(Long id, String username, String password, String email, Integer age) {
+        super(username, password, email, age);
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

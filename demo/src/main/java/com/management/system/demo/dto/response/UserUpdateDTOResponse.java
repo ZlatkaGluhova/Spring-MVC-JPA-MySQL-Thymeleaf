@@ -15,10 +15,10 @@ public class UserUpdateDTOResponse extends UserUpdateDTORequest {
     public UserUpdateDTOResponse() {
     }
 
-public UserUpdateDTOResponse(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
-    super(id, username, password, createdOn, roles);
-    this.updatedOn = updatedOn;
-}
+    public UserUpdateDTOResponse(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
+        super(id, username, password, createdOn, roles);
+        this.updatedOn = updatedOn;
+    }
 
     public UserUpdateDTOResponse(Long id, String username, String password, String email, Integer age, Boolean isActive, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
         super(id, username, password, email, age, isActive, createdOn, roles);

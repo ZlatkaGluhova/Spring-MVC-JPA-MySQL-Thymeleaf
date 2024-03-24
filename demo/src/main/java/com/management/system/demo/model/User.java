@@ -59,6 +59,15 @@ public class User {
         this.roles = roles;
     }
 
+    public User(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.createdOn = createdOn;
+        this.roles = roles;
+    }
+
+
     public User(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn, String email, Integer age, Boolean isActive, List<Role> roles) {
         this.id = id;
         this.username = username;

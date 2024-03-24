@@ -21,5 +21,4 @@ public interface UserService {
     void deleteUser(Long id);
 
     List<User> getAllUsersWithRoles(List<Role> roles);
-
 }
