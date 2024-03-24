@@ -3,11 +3,13 @@ package com.management.system.demo.service;
 import com.management.system.demo.dto.request.RoleCreateDTORequest;
 import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.dto.response.RoleCreateDTOResponse;
+import com.management.system.demo.dto.response.RoleGetDTOResponse;
 import com.management.system.demo.dto.response.RoleUpdateDTOResponse;
-import com.management.system.demo.enums.RoleType;
 import com.management.system.demo.model.Role;
+import com.management.system.demo.model.User;
 import com.management.system.demo.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +18,12 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
+    @Lazy
     private RoleRepository roleRepository;
+
+    @Autowired
+    @Lazy
+    private UserService userService;
 
     @Override
     public List<Role> getAllRoles() {
@@ -58,6 +65,26 @@ public class RoleServiceImpl implements RoleService {
         Role role = roleRepository.findById(id).orElseThrow(() -> new RuntimeException("Role not exist with id: " + id));
 
         return role;
+    }
+
+    @Override
+    public RoleGetDTOResponse getRoleByIdWithUsers(Long id) {
+        Role role = roleRepository.findById(id).orElseThrow(() -> new RuntimeException("Role not exist with id: " + id));
+        List<User> users = userService.getAllUsersWithRoles(List.of(role));
+
+        RoleGetDTOResponse roleGetDTOResponse = new RoleGetDTOResponse(role, users);
+
+        return roleGetDTOResponse;
+    }
+
+    private Role mappedDataFromRoleGetDTORequestToRoleDB(RoleGetDTOResponse roleGetDTOResponse) {
+        Role roleFromDB = new Role();
+        roleFromDB.setId(roleGetDTOResponse.getId());
+        roleFromDB.setType(roleGetDTOResponse.getType());
+        roleFromDB.setDescription(roleGetDTOResponse.getDescription());
+        roleFromDB.setUsers(roleGetDTOResponse.getUsers());
+
+        return roleFromDB;
     }
 
     @Override

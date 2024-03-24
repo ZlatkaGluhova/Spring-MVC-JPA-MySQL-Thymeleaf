@@ -1,6 +1,5 @@
 package com.management.system.demo.service;
 
-
 import com.management.system.demo.model.Employer;
 import com.management.system.demo.repository.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;

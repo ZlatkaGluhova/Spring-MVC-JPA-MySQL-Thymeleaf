@@ -1,19 +1,19 @@
 package com.management.system.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.management.system.demo.dto.request.RoleUpdateDTORequest;
 import com.management.system.demo.enums.RoleType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class Role {
-    //id
-    //type
-    //description
-    //list of users
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,16 @@ public class Role {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 
     public Role() {
+    }
+
+    public Role(RoleType type, String description) {
+        this.type = type;
+        this.description = description;
     }
 
     public Role(Role roleFromDB, RoleUpdateDTORequest roleUpdateDTORequest) {
@@ -71,8 +77,7 @@ public class Role {
         this.users = users;
     }
 
-    @Override
-    public String toString() {
+    public String toStringR() {
         return "Role{" +
                 "id=" + id +
                 ", type=" + type +

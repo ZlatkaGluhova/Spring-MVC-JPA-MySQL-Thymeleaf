@@ -1,6 +1,5 @@
 package com.management.system.demo.controller;
 
-
 import com.management.system.demo.dto.request.UserCreateDTORequest;
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
 import com.management.system.demo.dto.response.UserCreateDTOResponse;
@@ -8,10 +7,10 @@ import com.management.system.demo.dto.response.UserUpdateDTOResponse;
 import com.management.system.demo.model.User;
 import com.management.system.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,8 @@ public class UserController {
 
     //build create User REST API
     @PostMapping
-    public UserCreateDTOResponse createUser(@RequestBody UserCreateDTORequest userCreateDTORequest) {
+    public UserCreateDTOResponse createUser(
+            @Valid @RequestBody UserCreateDTORequest userCreateDTORequest) {
         UserCreateDTOResponse userCreateDTOResponse = userService.saveUser(userCreateDTORequest);
 
         return userCreateDTOResponse;
@@ -44,7 +44,9 @@ public class UserController {
 
     //build update User by id REST API
     @PutMapping("/{id}")
-    public ResponseEntity<UserUpdateDTOResponse> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTORequest userUpdateDTORequest) {
+    public ResponseEntity<UserUpdateDTOResponse> updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserUpdateDTORequest userUpdateDTORequest) {
         UserUpdateDTOResponse updateUser = userService.updateUser(id, userUpdateDTORequest);
 
         return ResponseEntity.ok(updateUser);
@@ -57,6 +59,5 @@ public class UserController {
 
         return ResponseEntity.ok("The User with id: " + id + " is deleted successfully");
     }
-
 
 }

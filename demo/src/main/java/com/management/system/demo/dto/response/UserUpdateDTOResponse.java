@@ -1,9 +1,11 @@
 package com.management.system.demo.dto.response;
 
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
+import com.management.system.demo.model.Role;
 import com.management.system.demo.model.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class UserUpdateDTOResponse extends UserUpdateDTORequest {
@@ -13,8 +15,13 @@ public class UserUpdateDTOResponse extends UserUpdateDTORequest {
     public UserUpdateDTOResponse() {
     }
 
-    public UserUpdateDTOResponse(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn) {
-        super(id, username, password, createdOn);
+    public UserUpdateDTOResponse(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
+        super(id, username, password, createdOn, roles);
+        this.updatedOn = updatedOn;
+    }
+
+    public UserUpdateDTOResponse(Long id, String username, String password, String email, Integer age, Boolean isActive, LocalDateTime createdOn, List<Role> roles, LocalDateTime updatedOn) {
+        super(id, username, password, email, age, isActive, createdOn, roles);
         this.updatedOn = updatedOn;
     }
 
@@ -22,6 +29,9 @@ public class UserUpdateDTOResponse extends UserUpdateDTORequest {
         this.id = updateUserDB.getId(); // 1. nai-dobre
         username = updateUserDB.getUsername(); // 2.
         this.setPassword(updateUserDB.getPassword()); // 3.
+        this.email = updateUserDB.getEmail();
+        this.age = updateUserDB.getAge();
+        this.isActive = updateUserDB.isActive();
         this.setCreatedOn(updateUserDB.getCreatedOn());
         this.setUpdatedOn(updateUserDB.getUpdatedOn());
         setRoles(updateUserDB.getRoles()); // 4.

@@ -1,18 +1,17 @@
 package com.management.system.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.management.system.demo.dto.request.UserUpdateDTORequest;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
-    //id
-    //name
-    //password
-    //list of roles
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +29,18 @@ public class User {
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
+
+    @Column(name = "isActive")
+    private Boolean isActive = true;
+
     @ManyToMany
     @JoinTable(
             name = "user_role",
@@ -41,25 +52,41 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, LocalDateTime createdOn) {
+    public User(String username, String password, LocalDateTime createdOn, List<Role> roles) {
         this.username = username;
         this.password = password;
         this.createdOn = createdOn;
+        this.roles = roles;
     }
 
-    public User(UserUpdateDTORequest userUpdateDTORequest) {
-//        this.setId(userUpdateDTORequest.getId());
-//        this.setUsername(userUpdateDTORequest.getUsername());
-//        this.setPassword(userUpdateDTORequest.getPassword());
-////        userFromDB.setCreatedOn(userUpdateDTORequest.getCreatedOn());
-//        this.setUpdatedOn(LocalDateTime.now());
-//        this.setRoles(userUpdateDTORequest.getRoles());
+    public User(Long id, String username, String password, LocalDateTime createdOn, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.createdOn = createdOn;
+        this.roles = roles;
+    }
+
+
+    public User(Long id, String username, String password, LocalDateTime createdOn, LocalDateTime updatedOn, String email, Integer age, Boolean isActive, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.email = email;
+        this.age = age;
+        this.isActive = isActive;
+        this.roles = roles;
     }
 
     public User(User userFromDB, UserUpdateDTORequest userUpdateDTORequest) {
         this.setId(userUpdateDTORequest.getId() != null ? userFromDB.getId() : userUpdateDTORequest.getId());
         this.setUsername(userUpdateDTORequest.getUsername());
         this.setPassword(userUpdateDTORequest.getPassword());
+        this.setEmail(userUpdateDTORequest.getEmail());
+        this.setAge(userUpdateDTORequest.getAge());
+        this.setActive(userUpdateDTORequest.isActive());
         this.setCreatedOn(userFromDB.getCreatedOn());
         this.setUpdatedOn(LocalDateTime.now());
         this.setRoles(userUpdateDTORequest.getRoles());
@@ -105,6 +132,39 @@ public class User {
         this.updatedOn = updatedOn;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+
+    public Boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -113,14 +173,16 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
+    public String toStringU() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", isActive=" + isActive +
                 ", roles=" + roles +
                 '}';
     }

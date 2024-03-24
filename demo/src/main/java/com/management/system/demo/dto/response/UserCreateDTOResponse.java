@@ -13,10 +13,9 @@ public class UserCreateDTOResponse extends UserCreateDTORequest {
     public UserCreateDTOResponse() {
     }
 
-    public UserCreateDTOResponse(String username, String password, Long id, LocalDateTime createdOn) {
-        super(username, password);
+    public UserCreateDTOResponse(Long id, String username, String password, String email, Integer age) {
+        super(username, password, email, age);
         this.id = id;
-        this.createdOn = createdOn;
     }
 
     public Long getId() {
