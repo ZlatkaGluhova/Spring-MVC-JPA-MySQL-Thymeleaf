@@ -78,7 +78,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByRolesIn(roles);
     }
 
-
     private UserCreateDTOResponse mappedDataFromUserDBToUserCreateDTOResponse(User user) {
         UserCreateDTOResponse userCreateDTOResponse = new UserCreateDTOResponse();
         userCreateDTOResponse.setId(user.getId());
